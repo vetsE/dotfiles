@@ -1,0 +1,16 @@
+{
+  "python.linting.pylintEnabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.enabled": true,
+  "python.jediEnabled": true,
+  "python.formatting.provider": "black",
+  "python.sortImports.path": "/usr/bin/isort",
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "▲",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "➤"
+}

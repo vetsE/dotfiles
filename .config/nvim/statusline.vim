@@ -1,55 +1,62 @@
 set hidden  " allow buffer switching without saving
 set showtabline=2  " always show tabline
 
-" use lightline-buffer in lightline
-" The colorscheme for lightline.vim.
-" Currently, wombat, solarized, powerline, powerlineish,
-" jellybeans, molokai, seoul256, darcula, selenized_dark,
-" Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue,
-" Tomorrow_Night_Bright, Tomorrow_Night_Eighties, PaperColor,
-" landscape, one, materia, material, OldHope, nord, deus,
-" srcery_drk, ayu_mirage and 16color are available.
+" let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#coc#enabled ='0'
+" let g:airline_section_c = '%t'
 
-let g:lightline = {
-    \ 'colorscheme': 'solarized',
-    \ 'tabline': {
-    \   'left': [ 
-    \             [ 'separator' ],
-    \             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
-    \   'right': [ [ 'close' ], ],
-    \ },
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified', 'tagbar' ] ],
-    \   'right': [ [ 'lineinfo' ],
-    \              [ 'percent' ],
-    \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-    \ },
-    \ 'component_expand': {
-    \   'buffercurrent': 'lightline#buffer#buffercurrent',
-    \   'bufferbefore': 'lightline#buffer#bufferbefore',
-    \   'bufferafter': 'lightline#buffer#bufferafter',
-    \ },
-    \ 'component_type': {
-    \   'buffercurrent': 'tabsel',
-    \   'bufferbefore': 'raw',
-    \   'bufferafter': 'raw',
-    \ },
-    \ 'component': {
-    \   'separator': '',
-    \   'tagbar': '%{tagbar#currenttag("%s", "", "f")}',
-    \ },
-    \ 'component_function': {
-    \   'filename': 'LightlineFilename',
-    \ }
-    \ }
 
-" remap arrow keys
-nnoremap <Left> :bprev<CR>
-nnoremap <Right> :bnext<CR>
+ " use lightline-buffer in lightline
+ " The colorscheme for lightline.vim.
+ " Currently, wombat, solarized, powerline, powerlineish,
+ " jellybeans, molokai, seoul256, darcula, selenized_dark,
+ " Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue,
+ " Tomorrow_Night_Bright, Tomorrow_Night_Eighties, PaperColor,
+ " landscape, one, materia, material, OldHope, nord, deus,
+ " srcery_drk, ayu_mirage and 16color are available.
 
-" lightline-buffer ui settings
-" replace these symbols with ascii characters if your environment does not support unicode
+ let g:lightline = {
+     \ 'colorscheme': 'solarized',
+     \ 'tabline': {
+     \   'left': [ 
+     \             [ 'separator' ],
+     \             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+     \   'right': [ [ 'close' ], ],
+     \ },
+     \ 'active': {
+     \   'left': [ [ 'mode', 'paste' ],
+     \             [ 'readonly', 'modified', 'filename'] ],
+     \   'right': [ [ 'currentfunction'],
+     \              [ 'percent', 'lineinfo' ],
+     \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+     \ },
+     \ 'component_expand': {
+     \   'buffercurrent': 'lightline#buffer#buffercurrent',
+     \   'bufferbefore': 'lightline#buffer#bufferbefore',
+     \   'bufferafter': 'lightline#buffer#bufferafter',
+     \ },
+     \ 'component_type': {
+     \   'buffercurrent': 'tabsel',
+     \   'bufferbefore': 'raw',
+     \   'bufferafter': 'raw',
+     \ },
+     \ 'component': {
+     \   'separator': '',
+     \   'tagbar': '%{tagbar#currenttag("%s", "", "f")}',
+     \ },
+     \ 'component_function': {
+     \   'filename': 'LightlineFilename',
+     \ }
+     \ }
+
+
+" " remap arrow keys
+" nnoremap <Left> :bprev<CR>
+" nnoremap <Right> :bnext<CR>
+
+" " lightline-buffer ui settings
+" " replace these symbols with ascii characters if your environment does not support unicode
 let g:lightline_buffer_logo = ' '
 let g:lightline_buffer_readonly_icon = ''
 let g:lightline_buffer_modified_icon = '✭'

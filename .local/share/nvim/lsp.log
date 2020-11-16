@@ -1,0 +1,32 @@
+
+
+[ ERROR ] 2020-11-10T16:05:38+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:05:38,122 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_mypy': No module named 'future'\n"
+[ ERROR ] 2020-11-10T16:05:38+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:05:38,139 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+[ ERROR ] 2020-11-10T16:06:28+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:06:28,204 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_mypy': No module named 'future'\n"
+[ ERROR ] 2020-11-10T16:06:28+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:06:28,221 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+[ ERROR ] 2020-11-10T16:07:44+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:07:44,015 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+[ ERROR ] 2020-11-10T16:08:06+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:08:06,902 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+[ ERROR ] 2020-11-10T16:08:14+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:08:14,175 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+[ ERROR ] 2020-11-10T16:08:59+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:08:59,191 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+[ ERROR ] 2020-11-10T16:09:16+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:09:16,769 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+[ ERROR ] 2020-11-10T16:10:07+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 16:10:07,512 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+[ ERROR ] 2020-11-10T18:22:44+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-10 18:22:44,241 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+
+
+[ ERROR ] 2020-11-11T09:19:28+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-11 09:19:28,042 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+
+[ ERROR ] 2020-11-11T09:20:25+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-11 09:20:25,233 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
+
+
+
+[ ERROR ] 2020-11-11T09:21:31+0100 ] /usr/share/nvim/runtime/lua/vim/lsp/rpc.lua:443 ]	"rpc"	"pyls"	"stderr"	"2020-11-11 09:21:31,852 UTC - WARNING - pyls.config.config - Failed to load pyls entry point 'pyls_isort': cannot import name 'SortImports' from 'isort' (/usr/lib/python3.8/site-packages/isort/__init__.py)\n"
