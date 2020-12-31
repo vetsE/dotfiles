@@ -1,0 +1,4 @@
+ERROR 2020-12-29T18:52:13.164 158768 provider_invoke:188: error in provider treesitter/highlighter:line: Error executing lua: /usr/share/nvim/runtime/lua/vim/treesitter/highlighter.lua:219: line value outside range
+ERROR 2020-12-29T18:52:13.164 158768 provider_invoke:188: error in provider treesitter/highlighter:line: Error executing lua: /usr/share/nvim/runtime/lua/vim/treesitter/highlighter.lua:219: line value outside range
+ERROR 2020-12-29T18:52:13.467 158768 provider_invoke:188: error in provider treesitter/highlighter:line: Error executing lua: /usr/share/nvim/runtime/lua/vim/treesitter/highlighter.lua:219: line value outside range
+ERROR 2020-12-31T19:09:53.624 59531 call_set_error:627: RPC: ch 1 returned a response with an unknown request id. Ensure the client is properly synchronized

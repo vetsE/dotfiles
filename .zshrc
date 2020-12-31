@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.cargo/bin
+export VISUAL=nvim;
+export EDITOR=nvim;
 
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh
@@ -16,25 +18,25 @@ setopt NULL_GLOB
 
 
 # ZSH_THEME=bullet-train
-# ZSH_THEME=powerlevel10k/powerlevel10k
-# ZSH_THEME="bullet-train"
+# ZSH_THEME=powerlevel10k
+ZSH_THEME="bullet-train"
 
-# BULLETTRAIN_PROMPT_ORDER=(
-#     time
-#     cmd_exec_time
-#     git
-#     # context
-#     dir
-#     status
-#     virtualenv
-# )
+BULLETTRAIN_PROMPT_ORDER=(
+    time
+    cmd_exec_time
+    git
+    # context
+    dir
+    status
+    virtualenv
+)
 # BULLETTRAIN_PROMPT_CHAR="☼"
-# BULLETTRAIN_PROMPT_CHAR="↪"
+BULLETTRAIN_PROMPT_CHAR="↪"
 # BULLETTRAIN_PROMPT_CHAR="😸"
 # BULLETTRAIN_PROMPT_CHAR="😃"
 
 # PURE
-ZSH_THEME=""
+# ZSH_THEME=""
 
 
 
@@ -323,4 +325,5 @@ GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"        # green circle
 # [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 autoload -U promptinit; promptinit
-prompt pure
+# prompt pure
+

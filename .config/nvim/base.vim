@@ -1,5 +1,7 @@
+nnoremap <SPACE> <Nop>
+let mapleader="\<Space>"
 set mouse=a
-set nocompatible  " Vim no vi.  
+set nocompatible  " Vim no vi.
 filetype off      " This makes Vundle happy.
 filetype plugin indent on
 set hidden
@@ -31,23 +33,6 @@ set signcolumn=yes
 set backspace=indent,eol,start " All backspace in insert mode.
 set history=1000               " 50 isn't enough!
 set showcmd                    " Show partial commands.
-
-set completeopt+=noselect
-set shortmess+=c
-let g:mucomplete#popup_direction = { 'keyp' : 1, 'keyn' : 1 }
-let g:mucomplete#always_use_completeopt = 1
-set completeopt-=preview
-
-runtime macros/sandwich/keymap/surround.vim
-
-let g:floaterm_position='center'
-
-au BufRead,BufNewFile *.md setlocal textwidth=100
-
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
 set updatetime=300
+syntax on
+set showtabline=2
