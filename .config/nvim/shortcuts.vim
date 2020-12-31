@@ -16,10 +16,10 @@ nmap <silent><leader>t <C-o>
 nmap <silent><leader>s <C-i>
 nmap <silent><leader>q :bp <BAR> bd #<CR>
 nmap <silent><leader>o :RnvimrToggle<CR>
-nmap <silent><leader>D <cmd>lua vim.lsp.buf.declaration()<CR>
-nmap <silent><leader>d <cmd>lua vim.lsp.buf.definition()<CR>
-nmap <silent><leader>k <cmd>lua vim.lsp.buf.hover()<CR>
-nmap <silent><leader>r <cmd>lua vim.lsp.buf.type_definition()<CR>
+nmap <silent><leader>D <Plug>(coc-type-definition)
+nmap <silent><leader>d :call CocActionAsync('jumpDefinition')<CR>
+nmap <silent><leader>k :call <SID>show_documentation()<CR>
+
 
 imap   <Space>
 
@@ -33,3 +33,13 @@ inoremap <silent><expr> <TAB>
     \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
