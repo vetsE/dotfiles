@@ -3,7 +3,7 @@
     "python.formatting.provider": "black",
     "python.linting.mypyEnabled": true,
     "python.linting.pylintEnabled": true,
-    "diagnostic.messageTarget": "echo",
+    "diagnostic.messageTarget": "float",
     "diagnostic.checkCurrentLine": false,
     "diagnostic.virtualText": false,
     "diagnostic.errorSign": "✘",
@@ -11,5 +11,7 @@
     "diagnostic.infoSign": "",
     "diagnostic.hintSign": "➤",
     "snippets.priority": 200,
-    "coc.preferences.formatOnSaveFiletypes": ["python"],
+    "coc.preferences.formatOnSaveFiletypes": ["python", "vue", "javascript" ],
+    "diagnostic.maxWindowWidth": 120
 }
+

@@ -11,28 +11,71 @@ let g:rnvimr_enable_picker = 1
 
 " Lsp and stuff
 " -------------
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '▲'
-let g:ale_python_pylint_options = '--disable=logging-fstring-interpolation'
-let g:ale_python_mypy_options = '--ignore-missing-imports --follow-imports=skip'
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
-let g:ale_c_parse_makefile = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%, %severity%] %code%: %s'
-" let g:ale_linters = {'html': ['HTMLHint'], 'javascript': ['jshint'], 'css': ['csslint'], 'python': ['mypy', 'pylint', 'pyright']}
-let g:ale_linters = {}
-let g:ale_fixers = {'python': ['black', 'isort']}
-let g:ale_fix_on_save = 1
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'allowlist': ['python'],
-        \ })
-endif
+
+" Folding
+" -------
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+" Gutter
+" ------
+let g:signify_priority = 5
+sign define LspDiagnosticsSignError text=✘ texthl=LspDiagnosticsSignError linehl= numhl=
+sign define LspDiagnosticsSignWarning text=▲ texthl=LspDiagnosticsSignWarning linehl= numhl=
+sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
+sign define LspDiagnosticsSignHint text=➤ texthl=LspDiagnosticsSignHint linehl= numhl=
+
+" Snippets
+" --------
+
+
+" Autocompletion
+" --------------
+
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:false
+let g:compe.source.ultisnips = v:true
+
+inoremap <silent><expr> <C-b> compe#complete()
+
+" " Avoid showing message extra message when using completion
+set completeopt=menuone,noselect
+
+" Autoformat
+" ----------
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * silent! undojoin | FiletypeFormat
+augroup END
+
+let g:vim_filetype_formatter_commands = {
+      \ 'python': 'black -q - | isort -q - | docformatter -',
+      \ }
+
+" let g:neoformat_enabled_markdown = ["prettier"]
+" let g:neoformat_enabled_python = ["black"]
+" let g:neoformat_basic_format_align = 1
+" let g:neoformat_basic_format_trim = 1
+" let g:neoformat_only_msg_on_error = 1
+
+" Comments
+autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}

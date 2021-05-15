@@ -33,6 +33,6 @@ set signcolumn=yes
 set backspace=indent,eol,start " All backspace in insert mode.
 set history=1000               " 50 isn't enough!
 set showcmd                    " Show partial commands.
-set updatetime=300
+set updatetime=100
 syntax on
 set showtabline=2

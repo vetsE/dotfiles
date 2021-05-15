@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.cargo/bin
 export VISUAL=nvim;
@@ -18,8 +25,8 @@ setopt NULL_GLOB
 
 
 # ZSH_THEME=bullet-train
-# ZSH_THEME=powerlevel10k
-ZSH_THEME="bullet-train"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 BULLETTRAIN_PROMPT_ORDER=(
     time
@@ -37,8 +44,6 @@ BULLETTRAIN_PROMPT_CHAR="↪"
 
 # PURE
 # ZSH_THEME=""
-
-
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,55 +76,7 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git extract)
-
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
@@ -128,6 +85,9 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+red=$(tput bold;tput setaf 1)
+green=$(tput bold;tput setaf 2)
+normal=$(tput sgr0)
 
 function imhere() {
     while true
@@ -140,46 +100,46 @@ function imhere() {
 }
 
 export EDITOR='nvim'
+# function search() {
+#     if [[ $# -eq 1 ]]
+#     then
+#         pattern=$1
+#         grep -rnoP ".{0,30}$pattern.{0,30}" *
+#         return $?
+#     elif [[ $# -eq 2 ]]
+#     then
+#         extension=$1
+#         pattern=$2
+#         grep -rnoP ".{0,30}${pattern}.{0,30}" **/*.$extension 
+#         return $?
+#     elif [[ $# -eq 3 ]]
+#     then
+#         extension=$1
+#         context=$2
+#         pattern=$3
+#         grep -rnoP ".{0,$context}${pattern}.{0,$context}" **/*.$extension 
+#         return $?
+#     fi
+
+#     echo $fg[yellow]"Usage: search [extension] [context] <pattern>"
+#     return 1
+# }
+
 function search() {
-    if [[ $# -eq 1 ]]
-    then
-        pattern=$1
-        grep -rnoP ".{0,30}$pattern.{0,30}" *
-        return $?
-    elif [[ $# -eq 2 ]]
-    then
-        extension=$1
-        pattern=$2
-        grep -rnoP ".{0,30}${pattern}.{0,30}" **/*.$extension 
-        return $?
-    elif [[ $# -eq 3 ]]
-    then
-        extension=$1
-        context=$2
-        pattern=$3
-        grep -rnoP ".{0,$context}${pattern}.{0,$context}" **/*.$extension 
-        return $?
-    fi
-
-    echo $fg[yellow]"Usage: search [extension] [context] <pattern>"
-    return 1
-}
-
-function search2() {
     case $# in
         1)
-            pattern=$1
+            pattern="$1"
             context=30
-            match="*"
+            match=""
             ;;
         2)
-            pattern=$2
+            pattern="$2"
             context=30
             match="**/*.$1"
             ;;
         3)
-            pattern=$3
-            context=$2
+            pattern="$3"
+            context="$2"
             match="**/*.$1"
             ;;
         *)
@@ -188,10 +148,9 @@ function search2() {
             ;;
     esac
 
-    grep -rnoP ".{0,$context}${pattern}.{0,$context}" $match
+    grep --color=always -rnoEI ".{0,$context}${pattern}.{0,$context}" $match
     return $?
 }
-
 
 function search_file() {
     if [[ $# -eq 1 ]]
@@ -225,6 +184,135 @@ function goodbye() {
     sleep 0.5
 }
 
+function spinner() {
+  # make sure we use non-unicode character type locale 
+  # (that way it works for any locale as long as the font supports the characters)
+  local LC_CTYPE=C
+
+  local pid=$1 # Process Id of the previous running command
+  local choice=8
+
+  # case $(($RANDOM % 12)) in
+  case $choice in
+  0)
+    local spin='⠁⠂⠄⡀⢀⠠⠐⠈'
+    local charwidth=3
+    ;;
+  1)
+    local spin='-\|/'
+    local charwidth=1
+    ;;
+  2)
+    local spin="▁▂▃▄▅▆▇█▇▆▅▄▃▂▁"
+    local charwidth=3
+    ;;
+  3)
+    local spin="▉▊▋▌▍▎▏▎▍▌▋▊▉"
+    local charwidth=3
+    ;;
+  4)
+    local spin='←↖↑↗→↘↓↙'
+    local charwidth=3
+    ;;
+  5)
+    local spin='▖▘▝▗'
+    local charwidth=3
+    ;;
+  6)
+    local spin='┤┘┴└├┌┬┐'
+    local charwidth=3
+    ;;
+  7)
+    local spin='◢◣◤◥'
+    local charwidth=3
+    ;;
+  8)
+    local spin='◰◳◲◱'
+    local charwidth=3
+    ;;
+  9)
+    local spin='◴◷◶◵'
+    local charwidth=3
+    ;;
+  10)
+    local spin='◐◓◑◒'
+    local charwidth=3
+    ;;
+  11)
+    local spin='⣾⣽⣻⢿⡿⣟⣯⣷'
+    local charwidth=3
+    ;;
+  12)
+    local spin='✶✸✹✺✹✷'
+    local charwidth=3
+    ;;
+  esac
+
+  local i=0
+  tput civis # cursor invisible
+  while kill -0 $pid 2>/dev/null; do
+    local i=$(((i + $charwidth) % ${#spin}))
+    printf "%s" ${green}"${spin:$i:$charwidth}"${normal}
+    echo -en "\033]30;${spin:$i:$charwidth}\007"
+    echo -en "\033[1D"
+    sleep .1
+  done
+  tput cnorm
+  wait $pid
+  return $?
+}
+
+function now() {
+    date -u +"%H:%M:%S"
+}
+
+function watch_and_make_tex() {
+    set +m
+    [ ! -d "./tex" ] && echo ${red}"Couldn't find a 'tex' directory."${normal} && return 1
+
+    while true; do
+         inotifywait -e modify "./tex" 2>/dev/null
+         echo -n ${green}"Making "$(basename $(pwd))" ("$(now)") "${normal}
+         make > /tmp/wam.log 2>&1 &
+         spinner $!
+         if [[ $? -eq 0 ]]; then
+             echo ${green}"[OK]"${normal}
+             echo -ne "\033]30;[OK] $(now) \007"
+         else
+            echo ${red}"[ERROR]"${normal}
+            echo -ne "\033]30;[ERROR] $(now) \007"
+            cat /tmp/wam.log | grep "^l\.[0-9]\+"
+            rm /tmp/wam.log
+         fi
+         sleep 0.5
+    done
+    set -m
+}
+
+function watch_and_make() {
+
+    [ ! $# -eq 1 ] && echo ${red}"Need a file to watch."${normal} && return 1
+
+    set +m
+    while true; do
+         inotifywait -e modify "$1" 2>/dev/null
+         echo -n ${green}"Making $1 ("$(now)") "${normal}
+         make > /tmp/log.log 2>&1 &
+         spinner $!
+         if [[ $? -eq 0 ]]; then
+             echo ${green}"[OK]"${normal}
+             echo -ne "\033]30;[OK] $(now) \007"
+         else
+            echo ${red}"[ERROR]"${normal}
+            echo -ne "\033]30;[ERROR] $(now) \007"
+            cat /tmp/log.log
+            rm /tmp/log.log
+         fi
+         sleep 0.5
+    done
+    set +m
+}
+
 function replace() {
     context=20
 
@@ -248,9 +336,9 @@ function replace() {
         return 1
     fi
 
-    red=$(tput bold;tput setaf 1) 
-    green=$(tput bold;tput setaf 2) 
-    normal=$(tput sgr0)                      
+    red=$(tput bold;tput setaf 1)
+    green=$(tput bold;tput setaf 2)
+    normal=$(tput sgr0)
 
     size_first=$(echo $greped | cut -d':' -f1 | awk '{ print length, $0 }' | sort -n -s | tail -n 1 | cut -d' ' -f1)
     size_second=$(( ${#from} + ${context} * 2 + 10 ))
@@ -327,3 +415,5 @@ GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"        # green circle
 autoload -U promptinit; promptinit
 # prompt pure
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
