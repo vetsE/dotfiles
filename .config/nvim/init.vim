@@ -19,24 +19,31 @@ Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'xolox/vim-misc'
+Plug 'ishan9299/nvim-solarized-lua'
 
 " Look
 Plug 'ryanoasis/vim-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
 " Autoformat
-" Plug 'sbdchd/neoformat'
-Plug 'pappasam/vim-filetype-formatter'
 
-" Autocompletion
-Plug 'hrsh7th/nvim-compe'
+" Plug 'hrsh7th/nvim-compe'
 " Plug 'nvim-lua/completion-nvim'
 " Plug 'steelsojka/completion-buffers'
 " Plug 'nvim-treesitter/completion-treesitter'
 
 " Lsp stuff
-Plug 'neovim/nvim-lspconfig'
+Plug 'dense-analysis/ale'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'rhysd/vim-lsp-ale'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Autocompletion
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-vim-lsp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 
 " Snippets
 Plug 'SirVer/ultisnips'

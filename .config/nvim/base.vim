@@ -17,6 +17,10 @@ highlight SpecialKey guifg=white guibg=#cc0000
 set cursorline                 " Display the current cursor line.
 set number
 set shell=/usr/bin/zsh
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
 
 " Indenting stuff
 set tabstop=4                  " Number of spaces that a <Tab> counts for.
@@ -36,3 +40,8 @@ set showcmd                    " Show partial commands.
 set updatetime=100
 syntax on
 set showtabline=2
+set so=7
+set autoread
+au FocusGained,BufEnter * checktime
+
+let g:deoplete#enable_at_startup = 1
