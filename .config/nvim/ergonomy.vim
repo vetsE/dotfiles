@@ -16,14 +16,11 @@ let g:rnvimr_enable_picker = 1
 " -------
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+au BufRead * normal zR
 
 " Gutter
 " ------
 let g:signify_priority = 5
-sign define LspDiagnosticsSignError text=✘ texthl=LspDiagnosticsSignError linehl= numhl=
-sign define LspDiagnosticsSignWarning text=▲ texthl=LspDiagnosticsSignWarning linehl= numhl=
-sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
-sign define LspDiagnosticsSignHint text=➤ texthl=LspDiagnosticsSignHint linehl= numhl=
 
 " Snippets
 " --------
@@ -67,9 +64,9 @@ augroup fmt
   autocmd BufWritePre * silent! undojoin | FiletypeFormat
 augroup END
 
-let g:vim_filetype_formatter_commands = {
-      \ 'python': 'black -q - | isort -q - | docformatter -',
-      \ }
+" let g:vim_filetype_formatter_commands = {
+"       \ 'python': 'black -q - | isort -q - | docformatter -',
+"       \ }
 
 " let g:neoformat_enabled_markdown = ["prettier"]
 " let g:neoformat_enabled_python = ["black"]
@@ -79,3 +76,18 @@ let g:vim_filetype_formatter_commands = {
 
 " Comments
 autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}
+
+
+
+" Return to last edit position when opening files
+" -----------------------------------------------
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Persistent undo
+" ---------------
+try
+    set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undofile
+catch
+endtry
+

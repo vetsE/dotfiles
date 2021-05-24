@@ -23,6 +23,8 @@ Plug 'xolox/vim-misc'
 " Look
 Plug 'ryanoasis/vim-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/lsp-colors.nvim'
 
 " Autoformat
 " Plug 'sbdchd/neoformat'
@@ -37,6 +39,7 @@ Plug 'hrsh7th/nvim-compe'
 " Lsp stuff
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'folke/trouble.nvim'
 
 " Snippets
 Plug 'SirVer/ultisnips'

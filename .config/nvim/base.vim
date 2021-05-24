@@ -36,3 +36,12 @@ set showcmd                    " Show partial commands.
 set updatetime=100
 syntax on
 set showtabline=2
+
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+set so=7
+set autoread
+au FocusGained,BufEnter * checktime

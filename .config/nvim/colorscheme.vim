@@ -22,11 +22,16 @@ let g:airline_powerline_fonts = 1
 
 " Highlights
 " ----------
-hi ALEErrorLine guifg=#dc322f guibg=#073642 gui=bold
+" hi ALEErrorLine guifg=#dc322f guibg=#073642 gui=bold
 highlight! LspDiagnosticsUnderlineError guibg=#7a1d0c guifg=#ffe0d4 gui=bold
 highlight! LspDiagnosticsVirtualTextError guifg=#ff1600 gui=bold
 highlight! LspDiagnosticsUnderlineWarning guifg=#ffdf00 guibg=#505050 gui=bold
 highlight! LspDiagnosticsVirtualTextWarning guifg=#ffdf00  gui=bold
+sign define LspDiagnosticsSignError text=✘ texthl=LspDiagnosticsVirtualTextError linehl= numhl=
+sign define LspDiagnosticsSignWarning text=▲ texthl=LspDiagnosticsVirtualTextWarning linehl= numhl=
+sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
+sign define LspDiagnosticsSignHint text=➤ texthl=LspDiagnosticsSignHint linehl= numhl=
+
 
 " Floating
 " --------

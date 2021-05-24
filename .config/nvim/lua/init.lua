@@ -12,12 +12,18 @@ require'nvim-treesitter.configs'.setup {
 -- diagnostic
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
+        virtual_text = false,
         signs = true,
         underline = true,
         update_in_insert = false,
   }
 )
+
+require("trouble").setup {
+-- your configuration comes here
+-- or leave it empty to use the default settings
+-- refer to the configuration section below
+}
 
 -- require'diagborder'
 
@@ -67,3 +73,9 @@ require'lspconfig'.rust_analyzer.setup{
 -- latex lsp
 require'lspconfig'.texlab.setup{ latex = { lint = { onChange = true } } }
 
+require("lsp-colors").setup({
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
+})

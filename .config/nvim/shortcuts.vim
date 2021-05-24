@@ -17,5 +17,18 @@ nmap <silent><leader>o :RnvimrToggle<CR>
 nmap <silent><leader>D <cmd>lua vim.lsp.buf.type_definition()<CR>
 nmap <silent><leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent><leader>k <cmd>lua vim.lsp.buf.hover()<CR>
+nmap <silent><leader>w <cmd>TroubleToggle lsp_document_diagnostics<CR>
+nmap <silent><leader>é <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+
+
+nmap <silent><leader>s :wa<CR>
+nmap <silent><leader><cr> :noh<cr>
+
+nmap <M-t> mz:m+<cr>`z
+nmap <M-s> mz:m-2<cr>`z
+vmap <M-t> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-s> :m'<-2<cr>`>my`<mzgv`yo`z
+
+command! WW execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 imap   <Space>
