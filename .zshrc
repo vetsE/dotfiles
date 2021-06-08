@@ -24,9 +24,9 @@ setopt NULL_GLOB
 # export TYPEWRITTEN_MULTILINE=true
 
 
-# ZSH_THEME=bullet-train
+ZSH_THEME=bullet-train
 # ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 BULLETTRAIN_PROMPT_ORDER=(
     time

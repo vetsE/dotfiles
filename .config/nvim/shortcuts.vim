@@ -8,8 +8,10 @@ noremap <silent><s-F10> <cmd>lua vim.lsp.diagnostic.goto_prev { enable_popup = f
 noremap è ^
 noremap È 0
 
-nmap <silent><leader>t :bnext<CR>
-nmap <silent><leader>c :bprevious<CR>
+" nmap <silent><leader>t :bnext<CR>
+" nmap <silent><leader>c :bprevious<CR>
+nmap <silent><leader>t :BufferLineCycleNext<CR>
+nmap <silent><leader>c :BufferLineCyclePrev<CR>
 nmap <silent><leader>e <C-o>
 nmap <silent><leader>i <C-i>
 nmap <silent><leader>q :bp <BAR> bd #<CR>
@@ -18,6 +20,7 @@ nmap <silent><leader>D <cmd>lua vim.lsp.buf.type_definition()<CR>
 nmap <silent><leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent><leader>k <cmd>lua vim.lsp.buf.hover()<CR>
 nmap <silent><leader>w <cmd>TroubleToggle lsp_document_diagnostics<CR>
+nmap <silent><leader>z <cmd>TodoTrouble<CR>
 nmap <silent><leader>é <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
 

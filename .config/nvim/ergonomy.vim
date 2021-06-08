@@ -14,9 +14,9 @@ let g:rnvimr_enable_picker = 1
 
 " Folding
 " -------
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-au BufRead * normal zR
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+" au BufRead * normal zR
 
 " Gutter
 " ------
@@ -61,18 +61,19 @@ set completeopt=menuone,noselect
 " ----------
 augroup fmt
   autocmd!
-  autocmd BufWritePre * silent! undojoin | FiletypeFormat
+  autocmd BufWritePre * silent! undojoin | Neoformat
 augroup END
 
 " let g:vim_filetype_formatter_commands = {
 "       \ 'python': 'black -q - | isort -q - | docformatter -',
 "       \ }
 
-" let g:neoformat_enabled_markdown = ["prettier"]
-" let g:neoformat_enabled_python = ["black"]
-" let g:neoformat_basic_format_align = 1
-" let g:neoformat_basic_format_trim = 1
-" let g:neoformat_only_msg_on_error = 1
+let g:neoformat_enabled_markdown = []
+let g:neoformat_enabled_python = ["black", "isort", "docformatter"]
+let g:neoformat_enabled_rust = ["rustfmt"]
+let g:neoformat_basic_format_align = 0
+let g:neoformat_basic_format_trim = 1
+let g:neoformat_only_msg_on_error = 0
 
 " Comments
 autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}

@@ -3,11 +3,20 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
     highlight = {
         enable = true,
-        disable = {}
+        disable = {"python"}
     },
     indent = {
         enable = false
-    }
+    },
+    incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = " v",
+      node_incremental = "»",
+      scope_incremental = " »",
+      node_decremental = "«",
+    },
+  },
 }
 -- diagnostic
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -20,6 +29,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 require("trouble").setup {
+-- your configuration comes here
+-- or leave it empty to use the default settings
+-- refer to the configuration section below
+}
+
+require("todo-comments").setup {
 -- your configuration comes here
 -- or leave it empty to use the default settings
 -- refer to the configuration section below
@@ -79,3 +94,22 @@ require("lsp-colors").setup({
   Information = "#0db9d7",
   Hint = "#10B981"
 })
+
+require('lualine').setup{options = {theme = 'solarized_dark'}}
+
+
+
+-- Bufferline
+-- ----------
+require("bufferline").setup {
+    options = {
+        show_close_icon = false,
+        show_buffer_icons = false,
+        always_show_bufferline = true,
+        separator_style = "thin",
+    }
+}
+
+vim.g.solarized_diffmode = 'low'
+vim.g.solarized_visibility = 'normal'
+vim.g.solarized_italics = 0
