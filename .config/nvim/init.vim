@@ -11,6 +11,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'machakann/vim-sandwich'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " Colorschemes
 " Plug 'vim-airline/vim-airline-themes'
@@ -27,6 +31,8 @@ Plug 'machakann/vim-sandwich'
 Plug 'ishan9299/nvim-solarized-lua'
 Plug 'marko-cerovac/material.nvim'
 Plug 'mhartington/oceanic-next'
+Plug 'folke/tokyonight.nvim'
+Plug 'cocopon/iceberg.vim'
 
 " Look
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }

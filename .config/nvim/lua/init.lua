@@ -28,10 +28,15 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+local telescope = require("telescope")
 require("trouble").setup {
--- your configuration comes here
--- or leave it empty to use the default settings
--- refer to the configuration section below
+    defaults = {
+        mappings = {
+            n = { ["<leader>w"] = trouble.open_with_trouble },
+        },
+  },
 }
 
 require("todo-comments").setup {
@@ -113,3 +118,19 @@ require("bufferline").setup {
 vim.g.solarized_diffmode = 'low'
 vim.g.solarized_visibility = 'normal'
 vim.g.solarized_italics = 0
+
+
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        },
+      },
+    },
+}

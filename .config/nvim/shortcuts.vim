@@ -22,6 +22,11 @@ nmap <silent><leader>k <cmd>lua vim.lsp.buf.hover()<CR>
 nmap <silent><leader>w <cmd>TroubleToggle lsp_document_diagnostics<CR>
 nmap <silent><leader>z <cmd>TodoTrouble<CR>
 nmap <silent><leader>é <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nmap <silent><leader>f <cmd>Telescope find_files<cr>
+nmap <silent><leader>g <cmd>Telescope live_grep<cr>
+nmap <silent><leader>b <cmd>Telescope buffers<cr>
+nmap <silent><leader>W <cmd>Telescope lsp_document_diagnostics<cr>
+
 
 
 nmap <silent><leader>s :wa<CR>
@@ -35,3 +40,10 @@ vmap <M-s> :m'<-2<cr>`>my`<mzgv`yo`z
 command! WW execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 imap   <Space>
+
+" Vimtex
+let g:vimtex_mappings_disable = {
+    \ 'n': ['tse', 'tsd', 'tsc', 'tsf', 'tsD', 'csd', 'csc', 'cse', 'cs$'],
+    \ 'x': ['tsd'],
+    \}
+
