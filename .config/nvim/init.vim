@@ -55,9 +55,12 @@ Plug 'folke/todo-comments.nvim'
 Plug 'nvim-lua/lsp-status.nvim'
 
 " Snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mlaursen/vim-react-snippets'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 
 " React.js
 Plug 'yuezk/vim-js'
@@ -65,7 +68,7 @@ Plug 'mattn/emmet-vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 
 " Tex
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 
 call plug#end()
 

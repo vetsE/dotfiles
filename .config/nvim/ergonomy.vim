@@ -49,8 +49,8 @@ let g:compe.source.buffer = v:true
 let g:compe.source.calc = v:true
 let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:false
-let g:compe.source.ultisnips = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.ultisnips = v:false
 
 inoremap <silent><expr> <C-b> compe#complete()
 
@@ -92,3 +92,8 @@ try
 catch
 endtry
 
+" Snippets
+" --------
+" Expand or jump
+imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
