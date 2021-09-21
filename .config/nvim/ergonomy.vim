@@ -1,33 +1,40 @@
-" Ranger configuration
-" --------------------
 
-" Make Ranger replace Netrw and be the file explorer
-let g:rnvimr_enable_ex = 1
+" Comments
+autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}
 
-" Make Ranger to be hidden after picking a file
-let g:rnvimr_enable_picker = 1
 
-" Signifdexpr=nvim_treesitter#foldexpr()
+" Return to last edit position when opening files
+" -----------------------------------------------
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Lsp and stuff
-" -------------
-
-" Folding
-" -------
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
-" au BufRead * normal zR
-
-" Gutter
-" ------
-let g:signify_priority = 5
+" Persistent undo
+" ---------------
+try
+    set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undofile
+catch
+endtry
 
 " Snippets
 " --------
+" Expand or jump
+imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Autoformat
+" ----------
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * silent! undojoin | Neoformat
+augroup END
 
 
-" Autocompletion
-" --------------
+let g:neoformat_enabled_markdown = []
+let g:neoformat_enabled_python = ["black", "isort", "docformatter"]
+let g:neoformat_enabled_rust = ["rustfmt"]
+let g:neoformat_basic_format_align = 0
+let g:neoformat_basic_format_trim = 1
+let g:neoformat_only_msg_on_error = 0
 
 let g:compe = {}
 let g:compe.enabled = v:true
@@ -56,44 +63,10 @@ inoremap <silent><expr> <C-b> compe#complete()
 
 " " Avoid showing message extra message when using completion
 set completeopt=menuone,noselect
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_enable_ex = 1
 
-" Autoformat
-" ----------
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * silent! undojoin | Neoformat
-augroup END
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_enable_picker = 1
+let g:signify_priority = 5
 
-" let g:vim_filetype_formatter_commands = {
-"       \ 'python': 'black -q - | isort -q - | docformatter -',
-"       \ }
-
-let g:neoformat_enabled_markdown = []
-let g:neoformat_enabled_python = ["black", "isort", "docformatter"]
-let g:neoformat_enabled_rust = ["rustfmt"]
-let g:neoformat_basic_format_align = 0
-let g:neoformat_basic_format_trim = 1
-let g:neoformat_only_msg_on_error = 0
-
-" Comments
-autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}
-
-
-
-" Return to last edit position when opening files
-" -----------------------------------------------
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" Persistent undo
-" ---------------
-try
-    set undodir=~/.vim_runtime/temp_dirs/undodir
-    set undofile
-catch
-endtry
-
-" Snippets
-" --------
-" Expand or jump
-imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'

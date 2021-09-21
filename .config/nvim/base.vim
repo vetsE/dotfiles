@@ -35,7 +35,7 @@ set history=1000               " 50 isn't enough!
 set showcmd                    " Show partial commands.
 set updatetime=100
 syntax on
-set showtabline=2
+set showtabline=1
 
 set noerrorbells
 set novisualbell

@@ -9,7 +9,6 @@ Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'hoob3rt/lualine.nvim'
-Plug 'tpope/vim-fugitive'
 Plug 'machakann/vim-sandwich'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -35,10 +34,10 @@ Plug 'folke/tokyonight.nvim'
 Plug 'cocopon/iceberg.vim'
 
 " Look
-Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/lsp-colors.nvim'
-Plug 'akinsho/nvim-bufferline.lua'
+" Plug 'akinsho/nvim-bufferline.lua'
 
 " Autoformat
 Plug 'sbdchd/neoformat'

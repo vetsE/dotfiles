@@ -30,19 +30,37 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
-local telescope = require("telescope")
+local telescope = require("telescope").setup{
+    defaults = {
+        initial_mode = "insert",
+        mappings = {
+            i = { ["<C-c>"] = actions.close, },
+            n = {
+                ["<esc>"] = actions.close,
+                ["t"] = actions.move_selection_next,
+                ["s"] = actions.move_selection_previous,
+                ["C"] = actions.move_to_top,
+                ["M"] = actions.move_to_middle,
+                ["R"] = actions.move_to_bottom,
+            },
+        },
+    }
+}
+
 require("trouble").setup {
     defaults = {
         mappings = {
-            n = { ["<leader>w"] = trouble.open_with_trouble },
+            n = {
+                ["<leader>w"] = trouble.open_with_trouble,
+            },
         },
-  },
+    },
 }
 
 require("todo-comments").setup {
--- your configuration comes here
--- or leave it empty to use the default settings
--- refer to the configuration section below
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
 }
 
 -- require'diagborder'
@@ -53,36 +71,39 @@ require'lspconfig'.denols.setup{
 }
 
 -- python lsp
-require'lspconfig'.pyls.setup{
-    settings={
-        pyls = {
-            plugins = {
-                pyls_mypy = {
-                    enabled = true,
-                },
-                pycodestyle = {
-                    enabled = false
-                },
-                jedi_completion = {
-                    enabled = true
-                },
-                pylint = {
-                    enabled = true
-                }
-            }
-        }
-    }
-}
+-- require'lspconfig'.pyright.setup{}
+-- require'lspconfig'.jedi_language_server.setup{}
+require'lspconfig'.pylsp.setup{}
+-- require'lspconfig'.pyls.setup{
+--     settings={
+--         pyls = {
+--             plugins = {
+--                 pyls_mypy = {
+--                     enabled = true,
+--                 },
+--                 pycodestyle = {
+--                     enabled = false
+--                 },
+--                 jedi_completion = {
+--                     enabled = true
+--                 },
+--                 pylint = {
+--                     enabled = true
+--                 }
+--             }
+--         }
+--     }
+-- }
 
 -- rust lsp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
+    properties = {
+        'documentation',
+        'detail',
+        'additionalTextEdits',
+    }
 }
 
 require'lspconfig'.rust_analyzer.setup{
@@ -94,26 +115,13 @@ require'lspconfig'.rust_analyzer.setup{
 require'lspconfig'.texlab.setup{ latex = { lint = { onChange = true } } }
 
 require("lsp-colors").setup({
-  Error = "#db4b4b",
-  Warning = "#e0af68",
-  Information = "#0db9d7",
-  Hint = "#10B981"
+    Error = "#db4b4b",
+    Warning = "#e0af68",
+    Information = "#0db9d7",
+    Hint = "#10B981"
 })
 
 require('lualine').setup{options = {theme = 'solarized_dark'}}
-
-
-
--- Bufferline
--- ----------
-require("bufferline").setup {
-    options = {
-        show_close_icon = false,
-        show_buffer_icons = false,
-        always_show_bufferline = true,
-        separator_style = "thin",
-    }
-}
 
 vim.g.solarized_diffmode = 'low'
 vim.g.solarized_visibility = 'normal'
@@ -121,16 +129,19 @@ vim.g.solarized_italics = 0
 
 
 require'nvim-treesitter.configs'.setup {
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["ab"] = "@function.outer",
-        ["ib"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
+    textobjects = {
+        select = {
+            enable = true,
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["aF"] = "@function.outer",
+                ["iF"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+                ["ab"] = "@block.outer",
+                ["ib"] = "@block.inner",
+                
+            },
         },
-      },
     },
 }

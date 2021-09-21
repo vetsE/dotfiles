@@ -8,8 +8,8 @@ noremap è ^
 noremap È 0
 
 nmap <silent><leader><leader> :b#<cr>
-nmap <silent><leader>t :BufferLineCycleNext<CR>
-nmap <silent><leader>c :BufferLineCyclePrev<CR>
+nmap <silent><leader>t :bn<CR>
+nmap <silent><leader>c :bp<CR>
 nmap <silent><leader>e <C-o>
 nmap <silent><leader>i <C-i>
 nmap <silent><leader>m :make!<CR>
@@ -28,6 +28,7 @@ nmap <silent><leader>W <cmd>Telescope lsp_document_diagnostics<cr>
 nmap <silent><leader>- yypVj-<cr>
 nmap <silent><leader>= yypVj=<cr>
 
+tnoremap <Esc> <C-\><C-n>
 
 nmap <silent><leader>s :wa<CR>
 nmap <silent><leader><cr> :noh<cr>
