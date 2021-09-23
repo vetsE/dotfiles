@@ -41,6 +41,7 @@ Plug 'folke/lsp-colors.nvim'
 
 " Autoformat
 Plug 'sbdchd/neoformat'
+Plug 'dhruvasagar/vim-table-mode'
 
 " Autocompletion
 Plug 'hrsh7th/nvim-compe'
