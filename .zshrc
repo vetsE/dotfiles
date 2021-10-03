@@ -1,6 +1,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.cargo/bin
 export VISUAL=nvim;
 export EDITOR=nvim;
+export RANGER_LOAD_DEFAULT_RC="FALSE"
 
 export EDITOR='nvim'
 
