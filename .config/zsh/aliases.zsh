@@ -9,3 +9,5 @@ alias free="free -m"
 alias oldexit="exit"
 alias exit='goodbye ; oldexit'
 alias cat='bat'
+alias s='search'
+alias sf='search_file'

@@ -3,7 +3,7 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
     highlight = {
         enable = true,
-        disable = {"python"}
+        -- disable = {"python"}
     },
     indent = {
         enable = false
@@ -71,10 +71,10 @@ require'lspconfig'.denols.setup{
 }
 
 -- python lsp
--- require'lspconfig'.pyright.setup{}
+require'lspconfig'.pyright.setup{}
 -- require'lspconfig'.jedi_language_server.setup{}
-require'lspconfig'.pylsp.setup{}
--- require'lspconfig'.pyls.setup{
+-- require'lspconfig'.pylsp.setup{}
+-- require'lspconfig'.pylsp.setup{
 --     settings={
 --         pyls = {
 --             plugins = {

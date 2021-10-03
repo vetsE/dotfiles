@@ -70,3 +70,10 @@ let g:rnvimr_enable_ex = 1
 let g:rnvimr_enable_picker = 1
 let g:signify_priority = 5
 
+
+" Barbar
+let bufferline = get(g:, 'bufferline', {})
+" Enable/disable auto-hiding the tab bar when there is a single buffer
+let bufferline.auto_hide = v:true
+" Enable/disable close button
+let bufferline.closable = v:false

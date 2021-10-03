@@ -4,7 +4,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Ergonomy
 Plug 'vetsE/vim-bepo'
-Plug 'kevinhwang91/rnvimr'
+" Plug 'kevinhwang91/rnvimr'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
 Plug 'nvim-lua/plenary.nvim'
@@ -14,6 +16,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'romgrk/barbar.nvim'
 
 " Colorschemes
 " Plug 'vim-airline/vim-airline-themes'
@@ -26,7 +29,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Plug 'xolox/vim-misc'
 " Plug 'eddyekofo94/gruvbox-flat.nvim'
 " Plug 'shaunsingh/moonlight.nvim'
-" Plug 'shaunsingh/nord.nvim'
+Plug 'shaunsingh/nord.nvim'
 Plug 'ishan9299/nvim-solarized-lua'
 Plug 'marko-cerovac/material.nvim'
 Plug 'mhartington/oceanic-next'
@@ -41,7 +44,7 @@ Plug 'folke/lsp-colors.nvim'
 
 " Autoformat
 Plug 'sbdchd/neoformat'
-Plug 'dhruvasagar/vim-table-mode'
+" Plug 'dhruvasagar/vim-table-mode'
 
 " Autocompletion
 Plug 'hrsh7th/nvim-compe'

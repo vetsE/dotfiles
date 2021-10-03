@@ -2,7 +2,7 @@ set termguicolors     " Enable true colors support
 let &t_ut=''
 set background=dark
 
-colorscheme solarized-high
+colorscheme OceanicNext
 
 " Statusline
 " ----------
