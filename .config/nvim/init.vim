@@ -73,6 +73,8 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 " Tex
 " Plug 'lervag/vimtex'
 
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 call plug#end()
 
 lua << EOF

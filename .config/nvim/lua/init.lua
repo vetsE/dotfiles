@@ -65,15 +65,35 @@ require("todo-comments").setup {
 
 -- require'diagborder'
 
--- denols
-require'lspconfig'.denols.setup{
-    init_options = { enable = true, lint = true }
-}
+-- -- denols
+-- require'lspconfig'.denols.setup{
+--     init_options = { enable = true, lint = true }
+-- }
 
 -- python lsp
-require'lspconfig'.pyright.setup{}
+-- require'lspconfig'.pyright.setup{}
 -- require'lspconfig'.jedi_language_server.setup{}
--- require'lspconfig'.pylsp.setup{}
+require'lspconfig'.pylsp.setup{
+    settings = {
+        pylsp = {
+            plugins = {
+                pylint = {
+                    enabled = true
+                },
+                pyflakes = {
+                    enabled = true
+                },
+                 pycodestyle = {
+                    enabled = false
+                },
+                mypy = {
+                    enabled = true,
+                },
+            }
+        }
+
+    }
+}
 -- require'lspconfig'.pylsp.setup{
 --     settings={
 --         pyls = {
@@ -112,7 +132,7 @@ require'lspconfig'.rust_analyzer.setup{
 
 
 -- latex lsp
-require'lspconfig'.texlab.setup{ latex = { lint = { onChange = true } } }
+-- require'lspconfig'.texlab.setup{ latex = { lint = { onChange = true } } }
 
 require("lsp-colors").setup({
     Error = "#db4b4b",
