@@ -12,7 +12,7 @@ Plug 'mhinz/vim-signify'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'machakann/vim-sandwich'
-Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -48,7 +48,7 @@ Plug 'sbdchd/neoformat'
 
 " Autocompletion
 Plug 'hrsh7th/nvim-compe'
-Plug 'rstacruz/vim-closer'
+" Plug 'rstacruz/vim-closer'
 
 " Lsp stuff
 Plug 'neovim/nvim-lspconfig'
@@ -56,6 +56,12 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/trouble.nvim'
 Plug 'folke/todo-comments.nvim'
 Plug 'nvim-lua/lsp-status.nvim'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+" Plug 'ray-x/lsp_signature.nvim'
+
+
 
 " Snippets
 " Plug 'SirVer/ultisnips'
@@ -73,15 +79,13 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 " Tex
 " Plug 'lervag/vimtex'
 
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
 call plug#end()
 
 lua << EOF
 require('init')
 EOF
 
-source ~/.config/nvim/ergonomy.vim
+" source ~/.config/nvim/ergonomy.vim
 source ~/.config/nvim/colorscheme.vim
 source ~/.config/nvim/shortcuts.vim
 source ~/.config/nvim/look.vim

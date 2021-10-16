@@ -45,3 +45,5 @@ set tm=500
 set so=7
 set autoread
 au FocusGained,BufEnter * checktime
+
+let g:coq_settings = { 'auto_start': v:true }

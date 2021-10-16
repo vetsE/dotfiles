@@ -63,6 +63,8 @@ require("todo-comments").setup {
     -- refer to the configuration section below
 }
 
+local coq = require("coq")
+
 -- require'diagborder'
 
 -- -- denols
@@ -73,27 +75,28 @@ require("todo-comments").setup {
 -- python lsp
 -- require'lspconfig'.pyright.setup{}
 -- require'lspconfig'.jedi_language_server.setup{}
-require'lspconfig'.pylsp.setup{
-    settings = {
-        pylsp = {
-            plugins = {
-                pylint = {
-                    enabled = true
-                },
-                pyflakes = {
-                    enabled = true
-                },
-                 pycodestyle = {
-                    enabled = false
-                },
-                mypy = {
-                    enabled = true,
-                },
+require'lspconfig'.pylsp.setup(coq.lsp_ensure_capabilities{
+        settings = {
+            pylsp = {
+                plugins = {
+                    pylint = {
+                        enabled = true
+                    },
+                    pyflakes = {
+                        enabled = true
+                    },
+                     pycodestyle = {
+                        enabled = false
+                    },
+                    mypy = {
+                        enabled = true,
+                    },
+                }
             }
-        }
 
+        }
     }
-}
+)
 -- require'lspconfig'.pylsp.setup{
 --     settings={
 --         pyls = {
@@ -165,3 +168,8 @@ require'nvim-treesitter.configs'.setup {
         },
     },
 }
+
+-- require "lsp_signature".setup{
+--     floating_window_above_first = true,
+-- }
+
