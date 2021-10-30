@@ -10,8 +10,8 @@ noremap È 0
 let g:ranger_map_keys = 0
 
 nmap <silent><leader><leader> :b#<cr>
-nmap <silent><leader>t :bn<CR>
-nmap <silent><leader>c :bp<CR>
+nmap <silent><leader>t :BufferNext<CR>
+nmap <silent><leader>c :BufferPrevious<CR>
 nmap <silent><leader>e <C-o>
 nmap <silent><leader>i <C-i>
 nmap <silent><leader>m :make!<CR>

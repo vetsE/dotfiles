@@ -1,0 +1,148 @@
+set $mod Mod4
+
+# Font for window titles.
+font pango:Fira Code Retina 8
+
+# General config script
+exec --no-startup-id ~/.startup.sh
+
+exec_always --no-startup-id picom -bc --config ~/.config/picom.conf
+
+ No titlebar
+for_window [class="^.*"] border pixel 3
+
+# Background
+exec --no-startup-id feh --bg-scale ~/Pictures/wallhaven-13jg59.jpg --bg-scale ~/Pictures/wallhaven-96v7lk.png
+
+# No plasma desktop background
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec konsole
+
+# start browser
+bindsym $mod+F1 exec google-chrome-stable
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi
+bindsym $mod+space exec rofi -show combi
+
+# change focus
+bindsym $mod+c focus left
+bindsym $mod+s focus down
+bindsym $mod+t focus up
+bindsym $mod+r focus right
+
+# move focused window
+bindsym $mod+Shift+c move left
+bindsym $mod+Shift+s move down
+bindsym $mod+Shift+t move up
+bindsym $mod+Shift+r move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+b layout stacking
+bindsym $mod+eacute layout tabbed
+bindsym $mod+p layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+workspace_auto_back_and_forth yes
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+
+set $monitorleft DP-0
+set $monitorright DP-4
+
+workspace $ws1 output $monitorleft
+workspace $ws2 output $monitorleft
+workspace $ws3 output $monitorleft
+workspace $ws4 output $monitorleft
+
+workspace $ws5 output $monitorright
+workspace $ws6 output $monitorright
+workspace $ws7 output $monitorright
+workspace $ws8 output $monitorright
+
+
+# switch to workspace
+bindsym $mod+quotedbl workspace number $ws1
+bindsym $mod+guillemotleft workspace number $ws2
+bindsym $mod+guillemotright workspace number $ws3
+bindsym $mod+parenleft workspace number $ws4
+bindsym $mod+parenright workspace number $ws5
+bindsym $mod+at workspace number $ws6
+bindsym $mod+plus workspace number $ws7
+bindsym $mod+minus workspace number $ws8
+bindsym $mod+slash workspace number $ws9
+bindsym $mod+asterisk workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+quotedbl move container to workspace number $ws1
+bindsym $mod+Shift+guillemotleft move container to workspace number $ws2
+bindsym $mod+Shift+guillemotright move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+at move container to workspace number $ws6
+bindsym $mod+Shift+plus move container to workspace number $ws7
+bindsym $mod+Shift+minus move container to workspace number $ws7
+bindsym $mod+Shift+slash move container to workspace number $ws9
+bindsym $mod+Shift+asterisk move container to workspace number $ws9
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym c resize shrink width 5 px or 5 ppt
+        bindsym t resize grow height 5 px or 5 ppt
+        bindsym s resize shrink height 5 px or 5 ppt
+        bindsym r resize grow width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+o mode "default"
+}
+
+bindsym $mod+o mode "resize"
+
+# gaps
+gaps inner 10
+
+# colors
+# class                 border  backgr. text    indicator
+client.focused          #fdf6e3 #fdf6e3 #eee8d5 #fdf6e3
+# client.focused_inactive #333333 #5f676a #ffffff #484e50
+# client.unfocused        #333333 #222222 #888888 #292d2e
+# client.urgent           #2f343a #900000 #ffffff #900000
+

@@ -6,6 +6,8 @@ export RANGER_LOAD_DEFAULT_RC="FALSE"
 export EDITOR='nvim'
 
 source /usr/share/zsh/share/antigen.zsh
+source /usr/share/zsh/plugins/zsh-extract/extract.plugin.zsh
+
 
 antigen use oh-my-zsh
 antigen bundle git

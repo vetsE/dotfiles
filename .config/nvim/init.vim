@@ -17,6 +17,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/barbar.nvim'
+Plug 'luukvbaal/stabilize.nvim'
 
 " Colorschemes
 " Plug 'vim-airline/vim-airline-themes'
@@ -47,8 +48,13 @@ Plug 'sbdchd/neoformat'
 " Plug 'dhruvasagar/vim-table-mode'
 
 " Autocompletion
-Plug 'hrsh7th/nvim-compe'
+" Plug 'hrsh7th/nvim-compe'
 " Plug 'rstacruz/vim-closer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
 " Lsp stuff
 Plug 'neovim/nvim-lspconfig'
@@ -69,6 +75,7 @@ Plug 'honza/vim-snippets'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'hrsh7th/cmp-vsnip'
 Plug 'rafamadriz/friendly-snippets'
 
 " React.js
@@ -85,7 +92,7 @@ lua << EOF
 require('init')
 EOF
 
-" source ~/.config/nvim/ergonomy.vim
+source ~/.config/nvim/ergonomy.vim
 source ~/.config/nvim/colorscheme.vim
 source ~/.config/nvim/shortcuts.vim
 source ~/.config/nvim/look.vim
