@@ -11,7 +11,7 @@ let g:ranger_map_keys = 0
 
 nmap <silent><leader><leader> :b#<cr>
 nmap <silent><leader>t :BufferNext<CR>
-nmap <silent><leader>c :BufferPrevious<CR>
+nmap <silent><leader>s :BufferPrevious<CR>
 nmap <silent><leader>e <C-o>
 nmap <silent><leader>i <C-i>
 nmap <silent><leader>m :make!<CR>
@@ -32,7 +32,6 @@ nmap <silent><leader>= yypVj=<cr>
 
 tnoremap <Esc> <C-\><C-n>
 
-nmap <silent><leader>s :wa<CR>
 nmap <silent><leader><cr> :noh<cr>
 
 nmap <M-t> mz:m+<cr>`z

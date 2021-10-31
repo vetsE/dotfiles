@@ -12,7 +12,7 @@ exec_always --no-startup-id picom -bc --config ~/.config/picom.conf
 for_window [class="^.*"] border pixel 3
 
 # Background
-exec --no-startup-id feh --bg-scale ~/Pictures/wallhaven-13jg59.jpg --bg-scale ~/Pictures/wallhaven-96v7lk.png
+exec --no-startup-id feh --bg-scale ~/Pictures/306406.jpg
 
 # No plasma desktop background
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
@@ -25,6 +25,8 @@ bindsym $mod+Return exec konsole
 
 # start browser
 bindsym $mod+F1 exec google-chrome-stable
+bindsym $mod+F2 exec dolphin
+bindsym $mod+F3 exec obsidian
 
 # kill focused window
 bindsym $mod+Shift+q kill

@@ -3,6 +3,7 @@ let &t_ut=''
 set background=dark
 
 colorscheme OceanicNext
+" colorscheme nord
 
 " Statusline
 " ----------
