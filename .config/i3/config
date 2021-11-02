@@ -23,13 +23,14 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec konsole
 
-# start browser
 bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec obsidian
+bindsym $mod+F4 exec konsole -e ipython
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod1+F4 kill
 
 # start rofi
 bindsym $mod+space exec rofi -show combi
@@ -68,6 +69,8 @@ bindsym $mod+a focus parent
 
 workspace_auto_back_and_forth yes
 
+# bindsym $mod+tab workspace next
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -78,6 +81,8 @@ set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 set $monitorleft DP-0
 set $monitorright DP-4
