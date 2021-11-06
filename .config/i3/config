@@ -9,10 +9,13 @@ exec --no-startup-id ~/.startup.sh
 exec_always --no-startup-id picom -bc --config ~/.config/picom.conf
 
  # No titlebar
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 2
 
 # Background
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+
+# polybar
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # No plasma desktop background
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
@@ -23,10 +26,12 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec konsole
 
-bindsym $mod+F1 exec google-chrome-stable
+bindsym $mod+F1 exec google-chrome-stable --new-window --profile-directory="Profile 1"
+bindsym $mod+Shift+F1 exec google-chrome-stable --new-window --profile-directory=Default
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec obsidian
 bindsym $mod+F4 exec konsole -e ipython
+bindsym $mod+F5 exec google-chrome-stable --profile-directory="Profile 1" --new-window https://3.basecamp.com/
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -34,6 +39,8 @@ bindsym $mod1+F4 kill
 
 # start rofi
 bindsym $mod+space exec rofi -show combi
+bindsym $mod+q exec rofi -show p -modi p:rofi-power-menu
+
 
 # change focus
 bindsym $mod+c focus left
@@ -66,6 +73,7 @@ bindsym $mod+Shift+space floating toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+bindsym $mod+u focus child
 
 workspace_auto_back_and_forth yes
 
@@ -73,16 +81,16 @@ workspace_auto_back_and_forth yes
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10:slack
 
 set $monitorleft DP-0
 set $monitorright DP-4
@@ -120,7 +128,7 @@ bindsym $mod+Shift+at move container to workspace number $ws6
 bindsym $mod+Shift+plus move container to workspace number $ws7
 bindsym $mod+Shift+minus move container to workspace number $ws7
 bindsym $mod+Shift+slash move container to workspace number $ws9
-bindsym $mod+Shift+asterisk move container to workspace number $ws9
+bindsym $mod+Shift+asterisk move container to workspace number $ws10
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -153,7 +161,7 @@ client.focused_inactive #333333 #5f676a #ffffff #484e50
 client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 
-assign [class="^Slack$"] 9
+assign [class="^Slack$"] $ws10
 
 # Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable
@@ -170,7 +178,7 @@ for_window [class="Kmix"] floating enable; border none
 for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [class="(?i)*nextcloud*"] floating disable
-for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
+for_window [class="plasmashell" window_type="notification"] border none, move position 30 50;
 no_focus [class="plasmashell" window_type="notification"]
 
 
@@ -180,4 +188,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /co
 bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
 bindsym XF86AudioMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
 bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
+
+focus_follows_mouse no
+
 
