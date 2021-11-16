@@ -1,3 +1,4 @@
+
 nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
 set mouse=a
@@ -50,3 +51,4 @@ let g:coq_settings = { 'auto_start': 'shut-up',  }
 
 " Ranger instead of netwr
 let g:ranger_replace_netrw = 1
+

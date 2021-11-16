@@ -29,6 +29,8 @@ nmap <silent><leader>b <cmd>Telescope buffers<cr>
 nmap <silent><leader>W <cmd>Telescope lsp_document_diagnostics<cr>
 nmap <silent><leader>- yypVj-<cr>
 nmap <silent><leader>= yypVj=<cr>
+nmap <silent><leader>c :ToggleTerm<CR>
+
 
 tnoremap <Esc> <C-\><C-n>
 

@@ -28,9 +28,23 @@ augroup fmt
   au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 
+" let g:neoformat_cpp_clangformat = {
+"             \ 'exe': 'clang-format',
+"             \ 'args': ['-style=file']
+"             \ }
+
+" let g:neoformat_c_clangformat = {
+"             \ 'exe': 'clang-format',
+"             \ 'args': ['-style=file']
+"             \ }
+
+
 let g:neoformat_enabled_markdown = []
 let g:neoformat_enabled_python = ["black", "isort", "docformatter"]
 let g:neoformat_enabled_rust = ["rustfmt"]
+let g:neoformat_enabled_c = []
+let g:neoformat_enabled_cpp = []
+
 let g:neoformat_basic_format_align = 0
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_only_msg_on_error = 0

@@ -18,6 +18,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/barbar.nvim'
 Plug 'luukvbaal/stabilize.nvim'
+Plug 'akinsho/toggleterm.nvim'
 
 " Colorschemes
 " Plug 'vim-airline/vim-airline-themes'
@@ -36,6 +37,7 @@ Plug 'marko-cerovac/material.nvim'
 Plug 'mhartington/oceanic-next'
 Plug 'folke/tokyonight.nvim'
 Plug 'cocopon/iceberg.vim'
+Plug 'wuelnerdotexe/vim-enfocado'
 
 " Look
 Plug 'lukas-reineke/indent-blankline.nvim'

@@ -4,6 +4,10 @@ set background=dark
 
 colorscheme OceanicNext
 " colorscheme nord
+" let g:enfocado_style = "neon"
+" let g:enfocado_style = "nature"
+" autocmd VimEnter * ++nested colorscheme enfocado
+
 
 " Statusline
 " ----------

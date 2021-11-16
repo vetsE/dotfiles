@@ -89,7 +89,7 @@ set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
-set $ws9 9
+set $ws9 9:spotify
 set $ws10 10:slack
 
 set $monitorleft DP-0
@@ -162,6 +162,8 @@ client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 
 assign [class="^Slack$"] $ws10
+assign [class="^Spotify$"] $ws9
+for_window [class="Spotify"] move to workspace $ws9
 
 # Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable
