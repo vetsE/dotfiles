@@ -3,16 +3,17 @@ set $mod Mod4
 # Font for window titles.
 font pango:Fira Code Retina 8
 
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+
 # General config script
 exec --no-startup-id ~/.startup.sh
 
-exec_always --no-startup-id picom -bc --config ~/.config/picom.conf
+exec_always --no-startup-id picom -bc
 
  # No titlebar
 for_window [class="^.*"] border pixel 2
 
 # Background
-exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 
 # polybar
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -156,10 +157,11 @@ gaps inner 10
 
 # colors
 # class                   border  backgr.  text    indicator
-client.focused          #fdf6e3 #fdf6e3 #222222 #fdf6e3
-client.focused_inactive #333333 #5f676a #ffffff #484e50
-client.unfocused        #333333 #222222 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
+# client.focused            #fdf6e3 #fdf6e3 #222222 #fdf6e3
+client.focused            #4169E1 #4169E1 #222222 #4169E1
+client.focused_inactive   #333333 #5f676a #ffffff #484e50
+client.unfocused          #333333 #222222 #888888 #292d2e
+client.urgent             #2f343a #900000 #ffffff #900000
 
 assign [class="^Slack$"] $ws10
 assign [class="^Spotify$"] $ws9
@@ -180,8 +182,11 @@ for_window [class="Kmix"] floating enable; border none
 for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [class="(?i)*nextcloud*"] floating disable
-for_window [class="plasmashell" window_type="notification"] border none, move position 30 50;
 no_focus [class="plasmashell" window_type="notification"]
+
+# for_window [class="plasmashell" window_type="notification"] border none, move position 30 50;
+# 3440x1440
+for_window [class="plasmashell" window_type="notification"] border none, move position 3100 50;
 
 
 bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1

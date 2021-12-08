@@ -66,7 +66,7 @@ function goodbye() {
     color=$(tput bold;tput setaf 7) 
     normal=$(tput sgr0)
     echo "${color}See You Space Cowboy...${normal}"
-    sleep 0.5
+    sleep 0.25
 }
 
 function spinner() {
@@ -294,4 +294,11 @@ function replace() {
     echo "${red}Apply changes with: ${normal}"
     echo 
     echo $cmd
+}
+
+function aws-login() {
+    TOKENS=$(aws-mfa $1)
+    read AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN <<< ${TOKENS}
+    export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+    echo "AWS tokens exported to ENV"
 }

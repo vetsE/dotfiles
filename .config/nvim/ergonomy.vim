@@ -39,6 +39,12 @@ augroup END
 "             \ }
 
 
+let g:neoformat_python_isort = {
+            \ 'exe': 'isort',
+            \ 'args': ['-', '--quiet', '--profile', 'black'],
+            \ 'stdin': 1,
+            \ }
+
 let g:neoformat_enabled_markdown = []
 let g:neoformat_enabled_python = ["black", "isort", "docformatter"]
 let g:neoformat_enabled_rust = ["rustfmt"]

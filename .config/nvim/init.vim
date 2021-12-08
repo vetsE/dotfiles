@@ -19,6 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/barbar.nvim'
 Plug 'luukvbaal/stabilize.nvim'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'Pocco81/TrueZen.nvim'
 
 " Colorschemes
 " Plug 'vim-airline/vim-airline-themes'
@@ -88,6 +89,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 " Tex
 " Plug 'lervag/vimtex'
 
+Plug 'mechatroner/rainbow_csv'
 call plug#end()
 
 lua << EOF

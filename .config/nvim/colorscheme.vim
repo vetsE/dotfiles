@@ -15,15 +15,16 @@ colorscheme OceanicNext
 " Highlights
 " ----------
 " hi ALEErrorLine guifg=#dc322f guibg=#073642 gui=bold
-highlight! LspDiagnosticsUnderlineError guibg=#7a1d0c guifg=#ffe0d4 gui=bold
-highlight! LspDiagnosticsVirtualTextError guifg=#ff1600 gui=bold
-highlight! LspDiagnosticsUnderlineWarning guifg=#ffdf00 guibg=#505050 gui=bold
-highlight! LspDiagnosticsVirtualTextWarning guifg=#ffdf00  gui=bold
-sign define LspDiagnosticsSignError text=✘ texthl=LspDiagnosticsVirtualTextError linehl= numhl=
-sign define LspDiagnosticsSignWarning text=▲ texthl=LspDiagnosticsVirtualTextWarning linehl= numhl=
-sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
-sign define LspDiagnosticsSignHint text=➤ texthl=LspDiagnosticsSignHint linehl= numhl=
+highlight! DiagnosticUnderlineError guibg=#7a1d0c guifg=#ffe0d4 gui=bold
+highlight! DiagnosticVirtualTextError guifg=#ff1600 gui=bold
+highlight! DiagnosticUnderlineWarning guifg=#ffdf00 guibg=#505050 gui=bold
+highlight! DiagnosticVirtualTextWarning guifg=#ffdf00  gui=bold
 
+sign define DiagnosticSignError text=✘ texthl=DiagnosticVirtualTextError linehl= numhl=
+sign define DiagnosticSignWarn text=▲ texthl=DiagnosticVirtualTextWarning linehl= numhl=
+sign define DiagnosticSignInfo text= texthl=DiagnosticSignInformation linehl= numhl=
+
+sign define DiagnosticSignHint text=➤ texthl=DiagnosticSignHint linehl= numhl=
 
 " Floating
 " --------
