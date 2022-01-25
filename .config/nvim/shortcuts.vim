@@ -9,27 +9,31 @@ noremap È 0
 
 let g:ranger_map_keys = 0
 
-nmap <silent><leader><leader> :b#<cr>
-nmap <silent><leader>t :BufferNext<CR>
-nmap <silent><leader>s :BufferPrevious<CR>
 nmap <silent><leader>e <C-o>
 nmap <silent><leader>i <C-i>
+nnoremap <silent><leader>o :RnvimrToggle<CR>
+tnoremap <silent><leader>o <C-\><C-n>:RnvimrToggle<CR>
+nmap <silent><leader><leader> :b#<cr>
+nmap <silent><leader>t :bp<CR>
+nmap <silent><leader>s :bn<CR>
 nmap <silent><leader>m :make!<CR>
 nmap <silent><leader>q :bp <BAR> bd #<CR>
-nmap <silent><leader>o :Ranger<CR>
 nmap <silent><leader>D <cmd>lua vim.lsp.buf.type_definition()<CR>
 nmap <silent><leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent><leader>k <cmd>lua vim.lsp.buf.hover()<CR>
-nmap <silent><leader>w <cmd>TroubleToggle lsp_document_diagnostics<CR>
-nmap <silent><leader>z <cmd>TodoTrouble<CR>
 nmap <silent><leader>é <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nmap <silent><leader>f <cmd>Telescope find_files<cr>
 nmap <silent><leader>g <cmd>Telescope live_grep<cr>
+nmap <silent><leader>h <cmd>Telescope grep_string<cr>
 nmap <silent><leader>b <cmd>Telescope buffers<cr>
 nmap <silent><leader>W <cmd>Telescope lsp_document_diagnostics<cr>
+nmap <silent><leader>a <cmd>Telescope lsp_code_actions<cr>
+nmap <silent><leader>p <cmd>Telescope buffers<cr>
+"nmap <silent><leader>i <cmd>Telescope lsp_implementations<cr>
 nmap <silent><leader>- yypVj-<cr>
 nmap <silent><leader>= yypVj=<cr>
-nmap <silent><leader>c :ToggleTerm<CR>
+nmap <silent><leader>n <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 
 tnoremap <Esc> <C-\><C-n>

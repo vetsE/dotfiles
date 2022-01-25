@@ -1,4 +1,3 @@
-
 nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
 set mouse=a
@@ -45,10 +44,11 @@ set tm=500
 
 set so=7
 set autoread
-au FocusGained,BufEnter * checktime
+" au FocusGained,BufEnter * checktime
 
-let g:coq_settings = { 'auto_start': 'shut-up',  }
+set clipboard=unnamedplus  " Copy to clipboard by default
 
 " Ranger instead of netwr
 let g:ranger_replace_netrw = 1
 
+let g:coq_settings = { 'auto_start': 'shut-up', 'clients.tree_sitter.enabled': v:false, 'limits.completion_auto_timeout': 1, "completion.always": v:false, "completion.smart": v:true, 'keymap.manual_complete': "<c-n>"}

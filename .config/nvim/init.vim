@@ -4,22 +4,53 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Ergonomy
 Plug 'vetsE/vim-bepo'
-" Plug 'kevinhwang91/rnvimr'
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
-Plug 'tpope/vim-commentary'
-Plug 'mhinz/vim-signify'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'hoob3rt/lualine.nvim'
-Plug 'machakann/vim-sandwich'
-" Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'machakann/vim-highlightedyank'
+
+" File manager
+" Plug 'francoiscabrol/ranger.vim'
+Plug 'kevinhwang91/rnvimr'
+
+" Autoformat
+Plug 'sbdchd/neoformat'
+
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'romgrk/barbar.nvim'
+Plug 'ray-x/lsp_signature.nvim'
+
+" Look
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/lsp-colors.nvim'
+
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" Comments
+Plug 'numToStr/Comment.nvim'
+
+" Git gutter signs
+Plug 'lewis6991/gitsigns.nvim'
+
+" Status line
+Plug 'hoob3rt/lualine.nvim'
+
+" Completion
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+
+" Must have
+Plug 'machakann/vim-highlightedyank'
 Plug 'luukvbaal/stabilize.nvim'
-Plug 'akinsho/toggleterm.nvim'
-Plug 'Pocco81/TrueZen.nvim'
+Plug 'mbbill/undotree'
+Plug 'machakann/vim-sandwich'
+Plug 'mechatroner/rainbow_csv'
+" Plug 'dhruvasagar/vim-table-mode'
+
 
 " Colorschemes
 " Plug 'vim-airline/vim-airline-themes'
@@ -39,57 +70,8 @@ Plug 'mhartington/oceanic-next'
 Plug 'folke/tokyonight.nvim'
 Plug 'cocopon/iceberg.vim'
 Plug 'wuelnerdotexe/vim-enfocado'
-
-" Look
-Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/lsp-colors.nvim'
-" Plug 'akinsho/nvim-bufferline.lua'
 
-" Autoformat
-Plug 'sbdchd/neoformat'
-" Plug 'dhruvasagar/vim-table-mode'
-
-" Autocompletion
-" Plug 'hrsh7th/nvim-compe'
-" Plug 'rstacruz/vim-closer'
-" Plug 'hrsh7th/cmp-nvim-lsp'
-" Plug 'hrsh7th/cmp-buffer'
-" Plug 'hrsh7th/cmp-path'
-" Plug 'hrsh7th/cmp-cmdline'
-" Plug 'hrsh7th/nvim-cmp'
-
-" Lsp stuff
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'folke/trouble.nvim'
-Plug 'folke/todo-comments.nvim'
-Plug 'nvim-lua/lsp-status.nvim'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-" Plug 'ray-x/lsp_signature.nvim'
-
-
-
-" Snippets
-" Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'mlaursen/vim-react-snippets'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-" Plug 'hrsh7th/cmp-vsnip'
-Plug 'rafamadriz/friendly-snippets'
-
-" React.js
-Plug 'yuezk/vim-js'
-Plug 'mattn/emmet-vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-
-" Tex
-" Plug 'lervag/vimtex'
-
-Plug 'mechatroner/rainbow_csv'
 call plug#end()
 
 lua << EOF

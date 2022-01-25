@@ -23,7 +23,6 @@ highlight! DiagnosticVirtualTextWarning guifg=#ffdf00  gui=bold
 sign define DiagnosticSignError text=✘ texthl=DiagnosticVirtualTextError linehl= numhl=
 sign define DiagnosticSignWarn text=▲ texthl=DiagnosticVirtualTextWarning linehl= numhl=
 sign define DiagnosticSignInfo text= texthl=DiagnosticSignInformation linehl= numhl=
-
 sign define DiagnosticSignHint text=➤ texthl=DiagnosticSignHint linehl= numhl=
 
 " Floating
