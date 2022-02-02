@@ -1,0 +1,31 @@
+---
+UseTab: "Never"
+ContinuationIndentWidth: 4
+IndentWidth: 4
+TabWidth: 4
+SpaceAfterLogicalNot: true
+BreakBeforeBraces: Linux
+AllowShortIfStatementsOnASingleLine: false
+IndentCaseLabels: false
+BinPackArguments: false
+BinPackParameters: false
+ColumnLimit: 100
+AlignConsecutiveMacros: AcrossEmptyLinesAndComments
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+PenaltyReturnTypeOnItsOwnLine: 1000000
+ExperimentalAutoDetectBinPacking: false
+AllowAllParametersOfDeclarationOnNextLine: false
+BreakBeforeBinaryOperators: false
+AllowShortBlocksOnASingleLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AlignTrailingComments: true
+AlignOperands: false
+AlignAfterOpenBracket: true
+AccessModifierOffset: -4
+SortIncludes: false
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+...
