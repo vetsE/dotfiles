@@ -47,10 +47,7 @@ require'nvim-treesitter.configs'.setup {
             scope_incremental = " »",
             node_decremental = "«"
         }
-    }
-}
-
-require'nvim-treesitter.configs'.setup {
+    },
     textobjects = {
         select = {
             enable = true,
@@ -65,12 +62,16 @@ require'nvim-treesitter.configs'.setup {
 
             }
         }
-    }
+    },
 }
 
--- Comments
------------
+-- Comments/docs
+----------------
 require('Comment').setup()
+
+require('neogen').setup {
+        enabled = true
+}
 
 -- Git
 ------

@@ -32,8 +32,9 @@ nmap <silent><leader>p <cmd>Telescope buffers<cr>
 "nmap <silent><leader>i <cmd>Telescope lsp_implementations<cr>
 nmap <silent><leader>- yypVj-<cr>
 nmap <silent><leader>= yypVj=<cr>
-nmap <silent><leader>n <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nmap <silent><leader>n <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<cr>
+nmap <silent><leader>à <cmd>Neogen<cr>
 
 
 tnoremap <Esc> <C-\><C-n>
