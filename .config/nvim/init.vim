@@ -72,6 +72,9 @@ Plug 'cocopon/iceberg.vim'
 Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'folke/lsp-colors.nvim'
 
+" Doc
+Plug 'danymat/neogen'
+
 call plug#end()
 
 lua << EOF
