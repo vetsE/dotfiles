@@ -1,6 +1,5 @@
 map <F1> <nop>
 map <F2> :make!<CR>
-nmap <silent><F3> <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 noremap <silent><F10> <cmd>lua vim.lsp.diagnostic.goto_next { enable_popup = false }<CR>
 noremap <silent><s-F10> <cmd>lua vim.lsp.diagnostic.goto_prev { enable_popup = false }<CR>
 
@@ -21,7 +20,7 @@ nmap <silent><leader>q :bp <BAR> bd #<CR>
 nmap <silent><leader>D <cmd>lua vim.lsp.buf.type_definition()<CR>
 nmap <silent><leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent><leader>k <cmd>lua vim.lsp.buf.hover()<CR>
-nmap <silent><leader>é <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nmap <silent><leader>é <cmd>lua vim.diagnostic.open_float(0, { scope = 'line', border = "rounded" })<CR>
 nmap <silent><leader>f <cmd>Telescope find_files<cr>
 nmap <silent><leader>g <cmd>Telescope live_grep<cr>
 nmap <silent><leader>h <cmd>Telescope grep_string<cr>

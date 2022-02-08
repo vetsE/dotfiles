@@ -18,6 +18,7 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'p00f/clangd_extensions.nvim'
 
 " Look
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -50,7 +51,6 @@ Plug 'mbbill/undotree'
 Plug 'machakann/vim-sandwich'
 Plug 'mechatroner/rainbow_csv'
 " Plug 'dhruvasagar/vim-table-mode'
-
 
 " Colorschemes
 " Plug 'vim-airline/vim-airline-themes'

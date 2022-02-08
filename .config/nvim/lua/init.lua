@@ -20,6 +20,21 @@ nvim_lsp.pylsp.setup {
     }
 }
 
+local actions = require "telescope.actions"
+
+-- telescope
+require("telescope").setup {
+    defaults = {
+        initial_mode = "normal",
+        mappings = {
+            n = {
+                ["t"] = actions.move_selection_next,
+                ["s"] = actions.move_selection_previous
+            }
+        }
+    }
+}
+
 -- diagnostic
 -------------
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
@@ -141,7 +156,7 @@ require('gitsigns').setup {
 -- Status line
 --------------
 
-require('lualine').setup {options = {theme = 'OceanicNext'}}
+require('lualine').setup {options = {theme = 'nightfly'}}
 
 -- Completion
 -------------
@@ -175,7 +190,7 @@ cfg = {
 
     fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
     hint_enable = false, -- virtual hint enable
-    hint_prefix = "→ ", -- Panda for parameter
+    hint_prefix = "→ ",
     hint_scheme = "String",
     hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
     max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
@@ -202,6 +217,50 @@ cfg = {
 
 require"lsp_signature".setup(cfg)
 
+require("clangd_extensions").setup {
+    server = {
+        -- options to pass to nvim-lspconfig
+        -- i.e. the arguments to require("lspconfig").clangd.setup({})
+    },
+    extensions = {
+        -- defaults:
+        -- Automatically set inlay hints (type hints)
+        autoSetHints = true,
+        -- Whether to show hover actions inside the hover window
+        -- This overrides the default hover handler
+        hover_with_actions = true,
+        -- These apply to the default ClangdSetInlayHints command
+        inlay_hints = {
+            -- Only show inlay hints for the current line
+            only_current_line = false,
+            -- Event which triggers a refersh of the inlay hints.
+            -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
+            -- not that this may cause  higher CPU usage.
+            -- This option is only respected when only_current_line and
+            -- autoSetHints both are true.
+            only_current_line_autocmd = "CursorHold",
+            -- wheter to show parameter hints with the inlay hints or not
+            show_parameter_hints = true,
+            -- whether to show variable name before type hints with the inlay hints or not
+            show_variable_name = false,
+            -- prefix for parameter hints
+            parameter_hints_prefix = "<- ",
+            -- prefix for all the other hints (type, chaining)
+            other_hints_prefix = "=> ",
+            -- whether to align to the length of the longest line in the file
+            max_len_align = false,
+            -- padding from the left if max_len_align is true
+            max_len_align_padding = 1,
+            -- whether to align to the extreme right or not
+            right_align = false,
+            -- padding from the right if right_align is true
+            right_align_padding = 7,
+            -- The color of the hints
+            highlight = "Comment"
+        }
+    }
+}
+
 -- Misc
 -------
 
@@ -214,3 +273,4 @@ require("lsp-colors").setup({
     Hint = "#10B981"
 })
 
+vim.diagnostic.config({float = {source = 'always', border = border}})

@@ -2,9 +2,9 @@ set termguicolors     " Enable true colors support
 let &t_ut=''
 set background=dark
 
-colorscheme OceanicNext
+colorscheme solarized
 " colorscheme nord
-" let g:enfocado_style = "neon"
+let g:enfocado_style = "neon"
 " let g:enfocado_style = "nature"
 " autocmd VimEnter * ++nested colorscheme enfocado
 
