@@ -26,8 +26,8 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec konsole
 
-bindsym $mod+F1 exec google-chrome-stable --new-window --profile-directory="Profile 1"
-bindsym $mod+Shift+F1 exec google-chrome-stable --new-window --profile-directory=Default
+bindsym $mod+F1 exec google-chrome-stable --new-window --profile-directory="Profile 1" --disable-background-networking
+bindsym $mod+Shift+F1 exec google-chrome-stable --new-window --profile-directory=Default --disable-background-networking
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec obsidian
 bindsym $mod+F4 exec konsole -e ipython

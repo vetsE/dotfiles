@@ -320,3 +320,8 @@ function hex() {
 function dec() {
     python -c "print(int('$1', 16))"
 }
+
+function donotify() {
+    start=$(date +%s)
+    "$@" && notify-send --urgency="critical" "Notification: DONE" "\"$(echo $@)\" took $(($(date +%s) - start)) seconds to finish" || notify-send --urgency="critical" "Notification: ERROR" "\"$(echo $@)\" failed after $(($(date +%s) - start)) seconds"
+}
