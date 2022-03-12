@@ -1,13 +1,18 @@
 set $mod Mod4
 
+# Autostart
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-clipman
+exec --no-startup-id pasystray
+
 # Font for window titles.
 font pango:Fira Code Retina 8
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/d8gtofbha3981.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 
 # General config script
-exec --no-startup-id ~/.startup.sh
+# exec --no-startup-id ~/.startup.sh
 
 exec_always --no-startup-id picom -bc
 
@@ -26,12 +31,12 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec konsole
 
+
 bindsym $mod+F1 exec google-chrome-stable --new-window --profile-directory="Profile 1" --disable-background-networking
 bindsym $mod+Shift+F1 exec google-chrome-stable --new-window --profile-directory=Default --disable-background-networking
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec obsidian
 bindsym $mod+F4 exec konsole -e ipython
-bindsym $mod+F5 exec google-chrome-stable --profile-directory="Profile 1" --new-window https://3.basecamp.com/
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -151,17 +156,57 @@ mode "resize" {
 
 bindsym $mod+o mode "resize"
 
-# gaps
-gaps inner 10
+gaps inner 6
+gaps outer 3
+
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#ffffff
+set $black		#000000
+set $purple		#e345ff
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
 
 # colors
 # class                   border  backgr.  text    indicator
-# client.focused            #fdf6e3 #fdf6e3 #222222 #fdf6e3
+client.focused            #fdf6e3 #fdf6e3 #222222 #fdf6e3
 client.focused            #5929FF #4169E1 #222222 #4169E1
 # client.focused            #4169E1 #4169E1 #222222 #4169E1
 client.focused_inactive   #333333 #5f676a #ffffff #484e50
 client.unfocused          #333333 #222222 #888888 #292d2e
-client.urgent             #2f343a #900000 #ffffff #900000
+# client.urgent             #2f343a #900000 #ffffff #900000
+# client.focused      $lightblue $darkblue $white  $purple  $mediumgrey
+# client.unfocused     $darkblue $darkblue $grey  $purple  $darkgrey
+# client.focused_inactive $darkblue $darkblue $grey  $purple  $black
+# client.urgent      $urgentred $urgentred $white  $purple  $yellowbrown
+
+bar {
+      font pango: Noto Sans Regular 10
+      status_command i3blocks -c ~/.config/i3/i3blocks.conf
+      position top
+      tray_output primary
+      # tray_padding 5
+
+      strip_workspace_name no
+
+          colors {
+          separator          $purple
+          background         $darkgrey
+          statusline         $white
+#                                border               bg      txt      indicator
+      focused_workspace   $mediumgrey         $grey      $darkgrey   $purple
+      active_workspace   $lightblue         $mediumgrey   $darkgrey   $purple
+      inactive_workspace   $darkgrey         $darkgrey   $grey      $purple
+      urgent_workspace   $urgentred          $urgentred   $white      $purple
+   }
+}
+
 
 assign [class="^Slack$"] $ws10
 assign [class="^Spotify$"] $ws9
