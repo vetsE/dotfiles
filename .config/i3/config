@@ -1,20 +1,21 @@
 set $mod Mod4
 
+# General config script
+exec --no-startup-id ~/.startup.sh
+
 # Autostart
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-clipman
-exec --no-startup-id pasystray
+exec --no-startup-id dex -ae i3
+exec_always --no-startup-id picom -bc
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Font for window titles.
 font pango:Fira Code Retina 8
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 
-# General config script
-# exec --no-startup-id ~/.startup.sh
-
-exec_always --no-startup-id picom -bc
 
  # No titlebar
 for_window [class="^.*"] border pixel 3
@@ -186,26 +187,28 @@ client.unfocused          #333333 #222222 #888888 #292d2e
 # client.focused_inactive $darkblue $darkblue $grey  $purple  $black
 # client.urgent      $urgentred $urgentred $white  $purple  $yellowbrown
 
-bar {
-      font pango: Noto Sans Regular 10
-      status_command i3blocks -c ~/.config/i3/i3blocks.conf
-      position top
-      tray_output primary
-      # tray_padding 5
-
-      strip_workspace_name no
-
-          colors {
-          separator          $purple
-          background         $darkgrey
-          statusline         $white
-#                                border               bg      txt      indicator
-      focused_workspace   $mediumgrey         $grey      $darkgrey   $purple
-      active_workspace   $lightblue         $mediumgrey   $darkgrey   $purple
-      inactive_workspace   $darkgrey         $darkgrey   $grey      $purple
-      urgent_workspace   $urgentred          $urgentred   $white      $purple
-   }
-}
+# bar {
+      # tray_output none
+# }
+#       font pango: Noto Sans Regular 10
+#       status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#       position top
+#       tray_output primary
+#       # tray_padding 5
+#
+#       strip_workspace_name no
+#
+#           colors {
+#           separator          $purple
+#           background         $darkgrey
+#           statusline         $white
+# #                                border               bg      txt      indicator
+#       focused_workspace   $mediumgrey         $grey      $darkgrey   $purple
+#       active_workspace   $lightblue         $mediumgrey   $darkgrey   $purple
+#       inactive_workspace   $darkgrey         $darkgrey   $grey      $purple
+#       urgent_workspace   $urgentred          $urgentred   $white      $purple
+#    }
+# }
 
 
 assign [class="^Slack$"] $ws10
