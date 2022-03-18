@@ -38,6 +38,7 @@ bindsym $mod+Shift+F1 exec google-chrome-stable --new-window --profile-directory
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec obsidian
 bindsym $mod+F4 exec konsole -e ipython
+bindsym $mod+F5 exec jupyter notebook
 
 # kill focused window
 bindsym $mod+Shift+q kill
