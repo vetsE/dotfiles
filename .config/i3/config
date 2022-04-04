@@ -5,10 +5,12 @@ exec --no-startup-id ~/.startup.sh
 
 # Autostart
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-clipman
+exec --no-startup-id parcellite
 exec --no-startup-id dex -ae i3
+exec --no-startup-id orage
 exec_always --no-startup-id picom -bc
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 
 # Font for window titles.
 font pango:Fira Code Retina 8
@@ -32,6 +34,17 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec konsole
 
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Tools exec spotify
 
 bindsym $mod+F1 exec google-chrome-stable --new-window --profile-directory="Profile 1" --disable-background-networking
 bindsym $mod+Shift+F1 exec google-chrome-stable --new-window --profile-directory=Default --disable-background-networking
@@ -42,7 +55,7 @@ bindsym $mod+F5 exec jupyter notebook
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym $mod1+F4 kill
+# bindsym $mod1+F4 kill
 
 # start rofi
 bindsym $mod+space exec rofi -show combi
@@ -213,7 +226,7 @@ client.unfocused          #333333 #222222 #888888 #292d2e
 
 
 assign [class="^Slack$"] $ws10
-assign [class="^Spotify$"] $ws9
+# assign [instance="spotify"] $ws9
 for_window [class="Spotify"] move to workspace $ws9
 
 # Plasma compatibility improvements
@@ -239,12 +252,4 @@ for_window [class="plasmashell" window_type="notification"] border none, move po
 
 
 bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
-bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
-bindsym XF86AudioMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
-bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
-
 focus_follows_mouse no
-
-

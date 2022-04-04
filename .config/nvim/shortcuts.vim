@@ -1,7 +1,7 @@
 map <F1> <nop>
 map <F2> :make!<CR>
-noremap <silent><F10> <cmd>lua vim.lsp.diagnostic.goto_next { enable_popup = false }<CR>
-noremap <silent><s-F10> <cmd>lua vim.lsp.diagnostic.goto_prev { enable_popup = false }<CR>
+noremap <silent><F10> <cmd>lua vim.diagnostic.goto_next { enable_popup = false }<CR>
+noremap <silent><s-F10> <cmd>lua vim.diagnostic.goto_prev { enable_popup = false }<CR>
 
 noremap è ^
 noremap È 0

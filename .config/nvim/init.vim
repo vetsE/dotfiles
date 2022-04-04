@@ -71,6 +71,10 @@ Plug 'folke/tokyonight.nvim'
 Plug 'cocopon/iceberg.vim'
 Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'folke/lsp-colors.nvim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'dracula/vim', { 'name': 'dracula' }
+Plug 'jnurmine/Zenburn'
+Plug 'ayu-theme/ayu-vim'
 
 " Doc
 Plug 'danymat/neogen'

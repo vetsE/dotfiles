@@ -75,7 +75,7 @@ function spinner() {
     local LC_CTYPE=C
 
     local pid=$1 # Process Id of the previous running command
-    local choice=11
+    local choice=9
 
     # case $(($RANDOM % 12)) in
     case $choice in
@@ -325,3 +325,32 @@ function donotify() {
     start=$(date +%s)
     "$@" && notify-send --urgency="critical" "Notification: DONE" "\"$(echo $@)\" took $(($(date +%s) - start)) seconds to finish" || notify-send --urgency="critical" "Notification: ERROR" "\"$(echo $@)\" failed after $(($(date +%s) - start)) seconds"
 }
+
+function stringiest()  {
+    set +m
+    max="${1:-25}"
+    find . -type f | xargs -I {} sh -c "strings '{}'|wc -l|tr -d '\n' && echo ': {}'"|sort --numeric-sort|tail -$max &
+    spinner $!
+    set -m
+}
+
+# function rugssh() {
+#     if ! msg=$(ssh root@10.0.1.511); then
+#         err=$?
+#         offending=$(echo $msg|grep -P "^Offending [0-9a-zA-Z]+ key in .+:[0-9]+$")
+#
+#         echo Found $offending
+#
+#         if [ -n $offending ]
+#         then
+#             echo $offending
+#             exit $err
+#         fi
+#
+#         echo Continuing
+#
+#         line=$(cat offending|awk -F ":" '{print $NF}')
+#         sed -i '${line}d' ~/.ssh/known_hosts
+#         ssh root@10.0.1.511
+#     fi
+# }

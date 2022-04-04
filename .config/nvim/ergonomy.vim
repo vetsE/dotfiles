@@ -56,7 +56,7 @@ let g:neoformat_python_isort = {
 let g:neoformat_python_black = {
             \ 'exe': 'black',
             \ 'stdin': 1,
-            \ 'args': ['-q', '-', '--target-version', 'py310'],
+            \ 'args': ['-q', '-', '--target-version', 'py310', ' --line-length', '96'],
             \ }
 
 let g:neoformat_enabled_markdown = []

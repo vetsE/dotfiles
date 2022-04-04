@@ -2,12 +2,16 @@ set termguicolors     " Enable true colors support
 let &t_ut=''
 set background=dark
 
-colorscheme solarized
+colorscheme solarized-high
 " colorscheme nord
-let g:enfocado_style = "neon"
+" let g:enfocado_style = "neon"
 " let g:enfocado_style = "nature"
 " autocmd VimEnter * ++nested colorscheme enfocado
 
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
 
 " Statusline
 " ----------

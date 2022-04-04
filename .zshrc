@@ -23,6 +23,7 @@ antigen apply
 
 source ~/.config/zsh/utils.zsh
 source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/zoxide.zsh
 source ~/.fzf.zsh
 
 setopt NULL_GLOB
@@ -37,3 +38,6 @@ prompt pure
 # zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # autoload -U promptinit; promptinit
+
+# Created by `pipx` on 2022-03-25 18:32:10
+export PATH="$PATH:/home/vetse/.local/bin"
