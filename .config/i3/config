@@ -2,11 +2,11 @@ set $mod Mod4
 
 # Autostart
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-clipman
-exec --no-startup-id pasystray
+exec --no-startup-id indicator-kdeconnect
+exec --no-startup-id dex --autostart --environment i3
 
 # Font for window titles.
-font pango:Fira Code Retina 8
+font pango:Fira Code Retina 9
 
 # Wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
@@ -15,6 +15,7 @@ exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 # exec --no-startup-id ~/.startup.sh
 
 exec_always --no-startup-id picom -bc
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
  # No titlebar
 for_window [class="^.*"] border pixel 3
@@ -30,17 +31,28 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec konsole
+bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
+# bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+# bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 
+# bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+# bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+# bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+#
 bindsym $mod+F1 exec google-chrome-stable --new-window --profile-directory="Profile 1" --disable-background-networking
 bindsym $mod+Shift+F1 exec google-chrome-stable --new-window --profile-directory=Default --disable-background-networking
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec obsidian
 bindsym $mod+F4 exec konsole -e ipython
+bindsym $mod+F5 exec kalendar
 
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod1+F4 kill
+
+# lock
+bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
 
 # start rofi
 bindsym $mod+space exec rofi -show combi
@@ -52,6 +64,7 @@ bindsym $mod+c focus left
 bindsym $mod+s focus down
 bindsym $mod+t focus up
 bindsym $mod+r focus right
+bindsym $mod+F12 exec ~/.config/i3/scripts/togglelaptop.sh
 
 # move focused window
 bindsym $mod+Shift+c move left
@@ -186,26 +199,26 @@ client.unfocused          #333333 #222222 #888888 #292d2e
 # client.focused_inactive $darkblue $darkblue $grey  $purple  $black
 # client.urgent      $urgentred $urgentred $white  $purple  $yellowbrown
 
-bar {
-      font pango: Noto Sans Regular 10
-      status_command i3blocks -c ~/.config/i3/i3blocks.conf
-      position top
-      tray_output primary
-      # tray_padding 5
-
-      strip_workspace_name no
-
-          colors {
-          separator          $purple
-          background         $darkgrey
-          statusline         $white
-#                                border               bg      txt      indicator
-      focused_workspace   $mediumgrey         $grey      $darkgrey   $purple
-      active_workspace   $lightblue         $mediumgrey   $darkgrey   $purple
-      inactive_workspace   $darkgrey         $darkgrey   $grey      $purple
-      urgent_workspace   $urgentred          $urgentred   $white      $purple
-   }
-}
+# bar {
+#       font pango: Noto Sans Regular 10
+#       status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#       position top
+#       tray_output primary
+#       # tray_padding 5
+#
+#       strip_workspace_name no
+#
+#           colors {
+#           separator          $purple
+#           background         $darkgrey
+#           statusline         $white
+# #                                border               bg      txt      indicator
+#       focused_workspace   $mediumgrey         $grey      $darkgrey   $purple
+#       active_workspace   $lightblue         $mediumgrey   $darkgrey   $purple
+#       inactive_workspace   $darkgrey         $darkgrey   $grey      $purple
+#       urgent_workspace   $urgentred          $urgentred   $white      $purple
+#    }
+# }
 
 
 assign [class="^Slack$"] $ws10
@@ -242,5 +255,3 @@ bindsym XF86AudioMute exec --no-startup-id qdbus org.kde.kglobalaccel /component
 bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
 
 focus_follows_mouse no
-
-
