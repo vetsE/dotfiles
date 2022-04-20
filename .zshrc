@@ -37,3 +37,4 @@ prompt pure
 # zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # autoload -U promptinit; promptinit
+source /usr/share/nvm/init-nvm.sh

@@ -325,3 +325,13 @@ function donotify() {
     start=$(date +%s)
     "$@" && notify-send --urgency="critical" "Notification: DONE" "\"$(echo $@)\" took $(($(date +%s) - start)) seconds to finish" || notify-send --urgency="critical" "Notification: ERROR" "\"$(echo $@)\" failed after $(($(date +%s) - start)) seconds"
 }
+
+function rugprep() {
+    stty -F /dev/ttyUSB3 115200 cs8 -cstopb -parenb && echo -ne "emux 1\r\n" > /dev/ttyUSB3
+}
+
+function rugcp() {
+from=$1 && shift
+to=$1 && shift
+rsync -e 'ssh -i ~/.ssh/id_rsa_railster'  --info=progress2 $from root@10.0.1.251:$to $@
+}
