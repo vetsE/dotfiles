@@ -5,7 +5,7 @@ exec --no-startup-id ~/.startup.sh
 
 # Autostart
 exec --no-startup-id nm-applet
-exec --no-startup-id parcellite
+exec --no-startup-id xfce4-clipman
 exec --no-startup-id dex -ae i3
 exec --no-startup-id orage
 exec_always --no-startup-id picom -bc
@@ -16,8 +16,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 font pango:Fira Code Retina 8
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
-
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 
  # No titlebar
 for_window [class="^.*"] border pixel 3

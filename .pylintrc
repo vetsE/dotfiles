@@ -31,7 +31,7 @@ unsafe-load-any-extension=no
 # A comma-separated list of package or module names from where C extensions may
 # be loaded. Extensions are loading into the active Python interpreter and may
 # run arbitrary code
-extension-pkg-allow-list=_datamap,datamap,PyQt5,PySide2,pydantic
+extension-pkg-allow-list=PyQt5,PySide2,pydantic
 
 
 [MESSAGES CONTROL]
@@ -56,20 +56,49 @@ confidence=
 # --disable=W"
 
 disable=
-    W1203,
-    E203,
-    attribute-defined-outside-init,
-    duplicate-code,
-    fixme,
-    invalid-name,
-    # missing-docstring,
-    protected-access,
-    logging-fstring-interpolation,
-    too-few-public-methods,
-    too-many-public-methods,
-    bad-continuation,
-    logging-format-interpolation
+    # Default values
+    print-statement,parameter-unpacking,unpacking-in-except,old-raise-syntax,
+    backtick,long-suffix,old-ne-operator,old-octal-literal,
+    import-star-module-level,raw-checker-failed,bad-inline-option,
+    locally-disabled,locally-enabled,file-ignored,suppressed-message,
+    useless-suppression,deprecated-pragma,apply-builtin,basestring-builtin,
+    buffer-builtin,cmp-builtin,coerce-builtin,execfile-builtin,file-builtin,
+    long-builtin,raw_input-builtin,reduce-builtin,standarderror-builtin,
+    unicode-builtin,xrange-builtin,coerce-method,delslice-method,
+    getslice-method,setslice-method,no-absolute-import,old-division,
+    dict-iter-method,dict-view-method,next-method-called,metaclass-assignment,
+    indexing-exception,raising-string,reload-builtin,oct-method,hex-method,
+    nonzero-method,cmp-method,input-builtin,round-builtin,intern-builtin,
+    unichr-builtin,map-builtin-not-iterating,zip-builtin-not-iterating,
+    range-builtin-not-iterating,filter-builtin-not-iterating,
+    using-cmp-argument,eq-without-hash,div-method,idiv-method,
+    rdiv-method,exception-message-attribute,invalid-str-codec,
+    sys-max-int,bad-python3-import,deprecated-string-function,
+    deprecated-str-translate-call,
 
+    # We want to ignore those, they are too strict
+    missing-docstring,unused-argument,len-as-condition,
+    anomalous-backslash-in-string,no-self-use,no-else-return,unneeded-not,
+    duplicate-code,too-few-public-methods,too-many-return-statements,
+    too-many-arguments,too-many-ancestors,consider-iterating-dictionary,
+    superfluous-parens, too-many-public-methods,
+
+    # This happens because pylint seems to not detect well members of libs
+    no-member, no-name-in-module,
+
+    # We should not ignore those either but it's only style and black will fix that
+    bad-continuation, bad-whitespace, wrong-import-order, trailing-whitespace,
+    missing-final-newline, bad-indentation, trailing-newlines,
+
+    # We should not ignore those but for our mental sanity
+    # we ignore those "temporarily"
+    invalid-name,protected-access,logging-not-lazy,
+    logging-format-interpolation,ungrouped-imports,deprecated-lambda,
+    too-many-branches,line-too-long,too-many-statements,too-many-locals,
+    broad-except, consider-merging-isinstance, global-statement, redefined-builtin,
+    unused-variable, fixme, reimported, unused-wildcard-import, wildcard-import,
+    relative-import, invalid-name, bare-except, too-many-nested-blocks,
+    empty-docstring,
 
 [REPORTS]
 
@@ -159,7 +188,7 @@ single-line-if-stmt=no
 no-space-check=trailing-comma,dict-separator
 
 # Maximum number of lines in a module
-max-module-lines=2000
+max-module-lines=5000
 
 # String used as indentation unit. This is usually " " (4 spaces) or "\t" (1
 # tab).

@@ -50,7 +50,9 @@ Plug 'luukvbaal/stabilize.nvim'
 Plug 'mbbill/undotree'
 Plug 'machakann/vim-sandwich'
 Plug 'mechatroner/rainbow_csv'
+Plug 'sindrets/diffview.nvim'
 " Plug 'dhruvasagar/vim-table-mode'
+Plug 'williamboman/nvim-lsp-installer'
 
 " Colorschemes
 " Plug 'vim-airline/vim-airline-themes'
@@ -69,7 +71,7 @@ Plug 'marko-cerovac/material.nvim'
 Plug 'mhartington/oceanic-next'
 Plug 'folke/tokyonight.nvim'
 Plug 'cocopon/iceberg.vim'
-Plug 'wuelnerdotexe/vim-enfocado'
+" Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'folke/lsp-colors.nvim'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'dracula/vim', { 'name': 'dracula' }

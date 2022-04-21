@@ -194,6 +194,9 @@ function watch_and_run() {
     "py")
         watch_and_do $1 python $1
         ;;
+    "sh")
+        watch_and_do $1 bash $1
+        ;;
     *)
         echo "${red}Doesn't know how to run this extension: $ext"
         return 1
@@ -326,10 +329,10 @@ function donotify() {
     "$@" && notify-send --urgency="critical" "Notification: DONE" "\"$(echo $@)\" took $(($(date +%s) - start)) seconds to finish" || notify-send --urgency="critical" "Notification: ERROR" "\"$(echo $@)\" failed after $(($(date +%s) - start)) seconds"
 }
 
-function stringiest()  {
+function stringiest() {
     set +m
     max="${1:-25}"
-    find . -type f | xargs -I {} sh -c "strings '{}'|wc -l|tr -d '\n' && echo ': {}'"|sort --numeric-sort|tail -$max &
+    find . -type f | xargs -I {} sh -c "strings '{}'|wc -l|tr -d '\n' && echo ': {}'" | sort --numeric-sort | tail -$max &
     spinner $!
     set -m
 }
