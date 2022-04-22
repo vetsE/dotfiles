@@ -327,11 +327,17 @@ function donotify() {
 }
 
 function rugprep() {
-    stty -F /dev/ttyUSB3 115200 cs8 -cstopb -parenb && echo -ne "emux 1\r\n" > /dev/ttyUSB3
+    stty -F /dev/ttyUSB3 115200 cs8 -cstopb -parenb && echo -ne "emux 1\r\n" >/dev/ttyUSB3
 }
 
 function rugcp() {
-from=$1 && shift
-to=$1 && shift
-rsync -e 'ssh -i ~/.ssh/id_rsa_railster'  --info=progress2 $from root@10.0.1.251:$to $@
+    [ $# -eq 0 ] && return 1
+    from=${1} && shift
+    if [ -n "$1" ]; then
+        to=${1} && shift
+    else
+        to="/mnt/fsuser-1/"
+    fi
+    echo "${green}$from -> $to${normal}"
+    rsync -e 'ssh -i ~/.ssh/id_rsa_railster -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR' --info=progress2 $from root@10.0.1.251:$to $@
 }

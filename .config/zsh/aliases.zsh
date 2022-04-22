@@ -13,6 +13,6 @@ alias s='search'
 alias sf='search_file'
 alias rug2pm="picocom -b 115200 /dev/ttyUSB3"
 alias rug2term="picocom -b 115200 /dev/ttyUSB2"
-alias rugssh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.0.1.251"
+alias rugssh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR root@10.0.1.251"
 alias rugscp="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 alias rg="rg -S"
