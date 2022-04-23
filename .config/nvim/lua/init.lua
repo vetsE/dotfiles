@@ -161,6 +161,31 @@ require("gitsigns").setup({
             linehl = "GitSignsChangeLn",
         },
     },
+    on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+        end
+
+        -- Navigation
+        map("n", "<leader>pn", function()
+            vim.schedule(function()
+                gs.next_hunk()
+            end)
+            return "<Ignore>"
+        end, { expr = true })
+
+        map({ "n", "v" }, "<leader>ps", ":Gitsigns stage_hunk<CR>")
+        map({ "n", "v" }, "<leader>pr", ":Gitsigns reset_hunk<CR>")
+        map({ "n", "v" }, "<leader>pu", gs.undo_stage_hunk)
+        map("n", "<leader>pd", gs.diffthis)
+        map("n", "<leader>pD", function()
+            gs.diffthis("~")
+        end)
+        map("n", "<leader>pD", gs.preview_hunk)
+    end,
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
     numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
     linehl = false, -- Toggle with `:Gitsigns toggle_linehl`

@@ -8,7 +8,7 @@ alias df="df -h"
 alias free="free -m"
 alias oldexit="exit"
 alias exit='goodbye ; oldexit'
-# alias cat='bat'
+alias cat='bat'
 alias s='search'
 alias sf='search_file'
 alias rug2pm="picocom -b 115200 /dev/ttyUSB3"
@@ -16,4 +16,6 @@ alias rug2term="picocom -b 115200 /dev/ttyUSB2"
 alias rugssh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@10.0.1.251"
 alias rugscp="scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 alias :q="exit"
-alias rg="rg --binary --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold"
+alias rg="rg -F --binary --no-ignore  --no-ignore-dot --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold"
+alias rge="rg --binary --no-ignore  --no-ignore-dot --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold"
+alias du="dust"

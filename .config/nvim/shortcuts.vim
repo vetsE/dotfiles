@@ -22,12 +22,12 @@ nmap <silent><leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent><leader>k <cmd>lua vim.lsp.buf.hover()<CR>
 nmap <silent><leader>é <cmd>lua vim.diagnostic.open_float(0, { scope = 'line', border = "rounded" })<CR>
 nmap <silent><leader>f <cmd>Telescope find_files<cr>
-nmap <silent><leader>g <cmd>Telescope live_grep<cr>
+nmap <silent><leader>r <cmd>Telescope live_grep<cr>
 nmap <silent><leader>h <cmd>Telescope grep_string<cr>
 nmap <silent><leader>b <cmd>Telescope buffers<cr>
 nmap <silent><leader>W <cmd>Telescope lsp_document_diagnostics<cr>
 nmap <silent><leader>a <cmd>Telescope lsp_code_actions<cr>
-nmap <silent><leader>p <cmd>Telescope buffers<cr>
+" nmap <silent><leader>p <cmd>Telescope buffers<cr>
 "nmap <silent><leader>i <cmd>Telescope lsp_implementations<cr>
 nmap <silent><leader>- yypVj-<cr>
 nmap <silent><leader>= yypVj=<cr>
