@@ -170,13 +170,15 @@ require("gitsigns").setup({
         end
 
         -- Navigation
-        map("n", "<leader>pn", function()
+        map("n", "<F5>", function()
             vim.schedule(function()
                 gs.next_hunk()
             end)
             return "<Ignore>"
         end, { expr = true })
 
+        map({ "n", "v" }, "<F3>", ":Gitsigns stage_hunk<CR>")
+        map({ "n", "v" }, "<F4>", ":Gitsigns reset_hunk<CR>")
         map({ "n", "v" }, "<leader>ps", ":Gitsigns stage_hunk<CR>")
         map({ "n", "v" }, "<leader>pr", ":Gitsigns reset_hunk<CR>")
         map({ "n", "v" }, "<leader>pu", gs.undo_stage_hunk)

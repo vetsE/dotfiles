@@ -6,8 +6,12 @@ TODO_PATH="/home/vetse/Documents/insync/todos.md"
 [ ! -f "$TODO_PATH" ] && echo "ERROR" && exit 1
 
 function count() {
-    full=$(grep -Pc "^\[[xX ]\]" <$TODO_PATH)
-    done=$(grep -Pc "^\[[xX]\]" <$TODO_PATH)
+    full=$(grep -Pc "^\*?\[[xX ]\]" <$TODO_PATH)
+    done=$(grep -Pc "^\*?\[[xX]\]" <$TODO_PATH)
+
+    urgent_all=$(grep -Pc "^\*\[[xX ]\]" <$TODO_PATH)
+    urgent_done=$(grep -Pc "^\*\[[xX]\]" <$TODO_PATH)
+
     projects=$(grep -Pc "^[#]{2}" <$TODO_PATH)
 
     if [ "$full" -eq 0 ]; then
@@ -20,7 +24,7 @@ function count() {
         return 0
     fi
 
-    echo "TODO: %{F#FDF}${done}/${full}%{F-} [${projects}]"
+    echo "%{F#0F3}${projects}%{F-} %{F#EEE}—${F-} %{F#F22}${urgent_done}/${urgent_all}%{F-} %{F#EEE}—${F-} %{F#99F}${done}/${full}%{F-}"
     return 0
 }
 
@@ -31,7 +35,7 @@ function edit() {
 
 function backup() {
     cp -L $TODO_PATH "$BACKUP_PATH"/todos_"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-    sed -i '/^\[[xX]\]/d' $TODO_PATH
+    sed -i '/^\*?\[[xX]\]/d' $TODO_PATH
     sed -i '/^$/N;/^\n$/D' $TODO_PATH
     exit 0
 }

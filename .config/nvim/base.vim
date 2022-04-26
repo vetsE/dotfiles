@@ -36,6 +36,7 @@ set showcmd                    " Show partial commands.
 set updatetime=100
 syntax on
 set showtabline=1
+set laststatus=3
 
 set noerrorbells
 set novisualbell

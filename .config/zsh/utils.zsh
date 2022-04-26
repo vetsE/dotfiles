@@ -337,6 +337,10 @@ function stringiest() {
     set -m
 }
 
+function copy() {
+    cat "$1" | xclip -selection secondary
+}
+
 # function rugssh() {
 #     if ! msg=$(ssh root@10.0.1.511); then
 #         err=$?
