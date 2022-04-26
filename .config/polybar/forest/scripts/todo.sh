@@ -34,10 +34,10 @@ function edit() {
 }
 
 function backup() {
-    cp -L $TODO_PATH "$BACKUP_PATH"/todos_"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-    sed -i '/^\*?\[[xX]\]/d' $TODO_PATH
-    sed -i '/<!--/d' $TODO_PATH
-    sed -i '/^$/N;/^\n$/D' $TODO_PATH
+    # cp -L $TODO_PATH "$BACKUP_PATH"/todos_"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+    sed -i -E '/^\*?\[[xX]\]/d' $TODO_PATH
+    sed -i -E '/<!--/d' $TODO_PATH
+    sed -i -E '/^$/N;/^\n$/d' $TODO_PATH
     exit 0
 }
 
