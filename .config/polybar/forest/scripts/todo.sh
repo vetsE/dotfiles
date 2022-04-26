@@ -36,6 +36,7 @@ function edit() {
 function backup() {
     cp -L $TODO_PATH "$BACKUP_PATH"/todos_"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
     sed -i '/^\*?\[[xX]\]/d' $TODO_PATH
+    sed -i '/<!--/d' $TODO_PATH
     sed -i '/^$/N;/^\n$/D' $TODO_PATH
     exit 0
 }
