@@ -17,6 +17,7 @@ highlight SpecialKey guifg=white guibg=#cc0000
 set cursorline                 " Display the current cursor line.
 set number
 set shell=/usr/bin/zsh
+set laststatus=3
 
 " Indenting stuff
 set tabstop=4                  " Number of spaces that a <Tab> counts for.
@@ -36,7 +37,6 @@ set showcmd                    " Show partial commands.
 set updatetime=100
 syntax on
 set showtabline=1
-set laststatus=3
 
 set noerrorbells
 set novisualbell
@@ -53,3 +53,4 @@ set clipboard=unnamedplus  " Copy to clipboard by default
 let g:ranger_replace_netrw = 1
 
 let g:coq_settings = { 'auto_start': 'shut-up', 'clients.tree_sitter.enabled': v:false, 'limits.completion_auto_timeout': 1, "completion.always": v:false, "completion.smart": v:true, 'keymap.manual_complete': "<c-n>"}
+

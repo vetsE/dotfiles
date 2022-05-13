@@ -91,3 +91,5 @@ source ~/.config/nvim/ergonomy.vim
 source ~/.config/nvim/colorscheme.vim
 source ~/.config/nvim/shortcuts.vim
 source ~/.config/nvim/look.vim
+
+set laststatus=3
