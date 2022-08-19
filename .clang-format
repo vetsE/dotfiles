@@ -1,5 +1,5 @@
 ---
-UseTab: "Never"
+UseTab: Never
 ContinuationIndentWidth: 4
 IndentWidth: 4
 TabWidth: 4
@@ -8,22 +8,21 @@ BreakBeforeBraces: Linux
 AllowShortIfStatementsOnASingleLine: false
 IndentCaseLabels: false
 BinPackParameters: false
-ColumnLimit: 100
+ColumnLimit: 90
 AlignConsecutiveMacros: AcrossEmptyLinesAndComments
-AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterDefinitionReturnType: false
 AlwaysBreakAfterReturnType: None
 PenaltyReturnTypeOnItsOwnLine: 1000000
-ExperimentalAutoDetectBinPacking: false
 AllowShortBlocksOnASingleLine: false
 AlignTrailingComments: true
 BreakBeforeBinaryOperators: false
 AllowAllParametersOfDeclarationOnNextLine: false
-AlignOperands: false
+AllowAllArgumentsOnNextLine: false
 AccessModifierOffset: -4
 SortIncludes: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: false
-AlignAfterOpenBracket: AlwaysBreak
 BinPackArguments: false
+ConstructorInitializerIndentWidth: 50
 ...

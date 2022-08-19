@@ -207,7 +207,7 @@ function watch_and_run() {
 
 function watch_and_do() {
 
-    [[ ! -f $1 || -d $1 ]] && echo ${red}"\"$1\" needs to be a valid file or directory."${normal} && return 1
+    [[ ! -e $1 ]] && echo ${red}"\"$1\" needs to be a valid file or directory."${normal} && return 1
 
     set +m
     while true; do
@@ -341,6 +341,10 @@ function copy() {
     cat "$1" | xclip -selection secondary
 }
 
+function cd_cache() {
+    cd $*
+    pwd >/tmp/_cd_cache_
+}
 # function rugssh() {
 #     if ! msg=$(ssh root@10.0.1.511); then
 #         err=$?
@@ -361,3 +365,30 @@ function copy() {
 #         ssh root@10.0.1.511
 #     fi
 # }
+
+function rugclean() {
+    make -C ~/Projects/RUG2-buildroot/ -s TARGET=rug2_production clean || (notify-send --urgency="critical" "RUG2-buildroot" "Failed to clean" ; return 1)
+    make -C ~/Projects/RUG2-buildroot/ -s TARGET=rug2_production defconfig || (notify-send --urgency="critical" "RUG2-buildroot" "Failed to defconfig" ; return 1)
+    notify-send --urgency="critical" "RUG2-buildroot" "Cleaned successfully"
+    return 0 
+}
+
+function rugbuild() {
+    if [ -z "$1" ]; then
+        make -C ~/Projects/RUG2-buildroot/ -s TARGET=rug2_production || (notify-send --urgency="critical" "RUG2-buildroot" "Failed to build" ; return 1)
+        notify-send --urgency="critical" "RUG2-buildroot" "Built successfully"
+        return 0
+    fi
+
+    make -C ~/Projects/RUG2-buildroot/ -s TARGET=rug2_production $1-dirclean $1 || (notify-send --urgency="critical" "RUG2-buildroot" "Failed to build $1" ; return 1)
+    notify-send --urgency="critical" "RUG2-buildroot" "Built successfully: $1"
+    return 1
+}
+
+function run_python() {
+    if [ -n "$1" ]; then
+        python $*
+    else
+        ipython
+    fi
+}

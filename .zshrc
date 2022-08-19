@@ -1,13 +1,12 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.cargo/bin
-export VISUAL=nvim;
-export EDITOR=nvim;
+export VISUAL=nvim
+export EDITOR=nvim
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 
 export EDITOR='nvim'
 
 source /usr/share/zsh/share/antigen.zsh
 source /usr/share/zsh/plugins/zsh-extract/extract.plugin.zsh
-
 
 antigen use oh-my-zsh
 antigen bundle git
@@ -20,7 +19,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle mafredri/zsh-async
 antigen apply
 
-
 source ~/.config/zsh/utils.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/zoxide.zsh
@@ -28,7 +26,8 @@ source ~/.fzf.zsh
 
 setopt NULL_GLOB
 
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 prompt pure
 
 # autoload -U compinit && compinit
@@ -42,3 +41,7 @@ prompt pure
 # Created by `pipx` on 2022-03-25 18:32:10
 export PATH="$PATH:/home/vetse/.local/bin"
 source /usr/share/nvm/init-nvm.sh
+
+if [ -f /tmp/_cd_cache_ ]; then
+    cd $(command cat /tmp/_cd_cache_)
+fi

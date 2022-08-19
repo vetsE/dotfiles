@@ -29,7 +29,7 @@ function count() {
 }
 
 function edit() {
-    konsole -e nvim $TODO_PATH
+    alacritty -e nvim $TODO_PATH
     exit 0
 }
 
