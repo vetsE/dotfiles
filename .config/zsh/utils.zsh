@@ -228,7 +228,7 @@ function watch_and_do() {
         end=$(date +%s.%N)
 
         echo
-        bat --style=numbers,rule --theme=Solarized\ \(dark\) /tmp/out.log
+        command cat /tmp/out.log
         echo
         echo -n "Took" ${green}
         echo "scale=4; ($end - $start)" | bc | xargs printf "%.3f"
@@ -341,30 +341,18 @@ function copy() {
     cat "$1" | xclip -selection secondary
 }
 
-function cd_cache() {
-    cd $*
-    pwd >/tmp/_cd_cache_
+function rugssh() {
+    if [ -z $1 ]
+    then
+        target="root@10.0.1.251"
+    elif [[ "$1" =~ "@" ]]
+    then
+        target="$1"
+    else
+        target="root@10.42.0.${1}"
+    fi
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/id_rsa_railster $target
 }
-# function rugssh() {
-#     if ! msg=$(ssh root@10.0.1.511); then
-#         err=$?
-#         offending=$(echo $msg|grep -P "^Offending [0-9a-zA-Z]+ key in .+:[0-9]+$")
-#
-#         echo Found $offending
-#
-#         if [ -n $offending ]
-#         then
-#             echo $offending
-#             exit $err
-#         fi
-#
-#         echo Continuing
-#
-#         line=$(cat offending|awk -F ":" '{print $NF}')
-#         sed -i '${line}d' ~/.ssh/known_hosts
-#         ssh root@10.0.1.511
-#     fi
-# }
 
 function rugclean() {
     make -C ~/Projects/RUG2-buildroot/ -s TARGET=rug2_production clean || (notify-send --urgency="critical" "RUG2-buildroot" "Failed to clean" ; return 1)
@@ -375,14 +363,19 @@ function rugclean() {
 
 function rugbuild() {
     if [ -z "$1" ]; then
-        make -C ~/Projects/RUG2-buildroot/ -s TARGET=rug2_production || (notify-send --urgency="critical" "RUG2-buildroot" "Failed to build" ; return 1)
-        notify-send --urgency="critical" "RUG2-buildroot" "Built successfully"
-        return 0
+        target=""
+    else
+        target="$1-dirclean $1"
     fi
 
-    make -C ~/Projects/RUG2-buildroot/ -s TARGET=rug2_production $1-dirclean $1 || (notify-send --urgency="critical" "RUG2-buildroot" "Failed to build $1" ; return 1)
-    notify-send --urgency="critical" "RUG2-buildroot" "Built successfully: $1"
-    return 1
+    make -C ~/Projects/RUG2-buildroot/ -s TARGET=rug2_production $target
+    if [ $? != 0 ]; then
+        notify-send --urgency="critical" "RUG2-buildroot" "Failed to build $1"
+        return 1
+    fi
+
+    notify-send --urgency="critical" "RUG2-buildroot" "Built successfully $1"
+    return 0
 }
 
 function run_python() {

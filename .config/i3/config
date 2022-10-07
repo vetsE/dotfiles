@@ -6,8 +6,7 @@ exec --no-startup-id ~/.startup.sh
 # Autostart
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id dex -ae i3
-exec_always --no-startup-id orage
-exec_always --no-startup-id greenclip daemon>/dev/null
+exec --no-startup-id greenclip daemon>/dev/null
 exec_always --no-startup-id picom --backend glx --vsync
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
@@ -146,6 +145,7 @@ bindsym $mod+Shift+plus move container to workspace number $ws7
 bindsym $mod+Shift+minus move container to workspace number $ws8
 bindsym $mod+Shift+slash move container to workspace number $ws9
 bindsym $mod+Shift+asterisk move container to workspace number $ws10
+bindsym $mod+Shift+p exec --no-startup-id /home/vetse/Scripts/ruglogin.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

@@ -48,6 +48,15 @@ require("packer").startup(function(use)
     use("glepnir/lspsaga.nvim")
     use("ray-x/lsp_signature.nvim")
     use("mfussenegger/nvim-lint")
+    use("AndrewRadev/switch.vim")
+    use("wsdjeg/vim-fetch")
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+    })
+    use("lewis6991/impatient.nvim")
 end)
 
 ----------------------------------------------------------------------------------------------------
@@ -122,7 +131,7 @@ vim.o.completeopt = "menuone,noselect"
 ----------------------------------------------------------------------------------------------------
 
 -- Disable that fucking command history
-vim.keymap.set({"n", "v"}, "q:", "<Nop>", {silent = true})
+vim.keymap.set({ "n", "v" }, "q:", "<Nop>", { silent = true })
 
 -- Remap space as leader key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -139,6 +148,7 @@ vim.keymap.set("n", "<leader>i", "<C-i>", { silent = true })
 -- Quick underline
 vim.keymap.set("n", "<leader>-", "yypVr-<CR>", { silent = true })
 vim.keymap.set("n", "<leader>=", "yypVr=<CR>", { silent = true })
+vim.keymap.set("n", "<leader>*", "yypVr*<CR>", { silent = true })
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>", { silent = true })
@@ -153,9 +163,19 @@ vim.keymap.set("n", "<leader><CR>", ":noh<CR>", { silent = true })
 
 -- Format
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { silent = true })
+vim.keymap.set("v", "<leader>f", vim.lsp.buf.range_formatting, { silent = true })
+
+-- Switch
+vim.keymap.set("n", "<leader>w", ":Switch<CR>", { silent = true })
 -------------------------------------------------------------------------------------------------
 --                                      Plugin config                                          --
 -------------------------------------------------------------------------------------------------
+
+-----------
+-- cache --
+-----------
+
+require("impatient")
 
 --------------------
 -- Signature help --
@@ -169,7 +189,8 @@ require("lsp_signature").setup({ floating_window = false, hint_prefix = "→ " }
 local saga = require("lspsaga")
 saga.init_lsp_saga({
     border_style = "rounded",
-    show_diagnostic_source = true,
+    saga_winblend = 10,
+    -- show_diagnostic_source = true,
     code_action_lightbulb = {
         enable = false,
         sign = true,
@@ -286,7 +307,7 @@ cmp.setup({
     },
     window = {
         completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        documentation = cmp.config.disable,
     },
     mapping = cmp.mapping.preset.insert({
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -322,8 +343,6 @@ cmp.setup({
     },
 })
 
-
-
 ---------------
 -- Telescope --
 ---------------
@@ -343,12 +362,12 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 
 -- Add leader shortcuts
-vim.keymap.set("n", "<leader>ff", function()
-    require("telescope.builtin").find_files({ previewer = false })
-end)
-vim.keymap.set("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
-vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags)
-vim.keymap.set("n", "<leader>ft", require("telescope.builtin").tags)
+-- vim.keymap.set("n", "<leader>ff", function()
+--     require("telescope.builtin").find_files({ previewer = false })
+-- end)
+-- vim.keymap.set("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find)
+-- vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags)
+-- vim.keymap.set("n", "<leader>ft", require("telescope.builtin").tags)
 vim.keymap.set("n", "<leader>b", require("telescope.builtin").buffers)
 vim.keymap.set("n", "<leader>r", require("telescope.builtin").live_grep)
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles)
@@ -421,10 +440,13 @@ local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr }
     vim.keymap.set("n", "<leader>d", vim.lsp.buf.definition, opts)
     -- vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>k", require("lspsaga.hover").render_hover_doc, opts)
+    -- vim.keymap.set("n", "<leader>k", require("lspsaga.hover").render_hover_doc, opts)
+    vim.keymap.set("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+    vim.keymap.set("n", "<leader>D", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+
     vim.keymap.set("n", "<leader>I", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "<C-k>", require("lspsaga.hover").render_hover_doc, opts)
-    vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+
+    -- vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
     vim.keymap.set("n", "<leader>n", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts)
     vim.keymap.set("n", "<leader>S", require("telescope.builtin").lsp_document_symbols, opts)
@@ -437,11 +459,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     underline = true,
     update_in_insert = false,
 })
-vim.diagnostic.config({ virtual_text = false})
+vim.diagnostic.config({ virtual_text = false })
+vim.keymap.set("n", "<leader>é", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>é", function()
-    vim.diagnostic.open_float(0, { scope = "line", border = "rounded" })
-end, { silent = true })
+-- vim.keymap.set("n", "<leader>é", function()
+--     vim.diagnostic.open_float(0, { scope = "line", border = "rounded" })
+-- end, { silent = true })
 vim.keymap.set("n", "<F10>", function()
     vim.diagnostic.goto_next({ enable_popup = false })
 end, { silent = true })
@@ -463,14 +486,14 @@ lspconfig.sumneko_lua.setup({
 })
 
 -- clang
-local clang_cap = {unpack(capabilities)}
+local clang_cap = { unpack(capabilities) }
 clang_cap.offsetEncoding = "utf-8"
 lspconfig.clangd.setup({ on_attach = on_attach, capabilities = clang_cap })
 
 -- bash
 lspconfig.bashls.setup({ on_attach = on_attach, capabilities = capabilities })
 
--- eslint 
+-- eslint
 lspconfig.eslint.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- json
@@ -499,14 +522,15 @@ lspconfig.pylsp.setup({
         },
     },
 })
+lspconfig.ltex.setup({})
 
-require('lint').linters_by_ft = {
-  python = {'mypy',}
+require("lint").linters_by_ft = {
+    python = { "mypy" },
 }
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
-  end,
+    callback = function()
+        require("lint").try_lint()
+    end,
 })
 
 ---------------------
@@ -517,10 +541,15 @@ require("null-ls").setup({
     on_attach = on_attach,
     capabilities = capabilities,
     sources = {
-        require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.formatting.isort,
-        require("null-ls").builtins.formatting.clang_format.with({ extra_args = {"--style=file:/home/vetse/.clang-format"}}),
+        require("null-ls").builtins.formatting.black,
+        require("null-ls").builtins.formatting.shfmt,
+        require("null-ls").builtins.formatting.clang_format.with({
+            extra_args = { "--style=file:/home/vetse/.clang-format" },
+        }),
         require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.formatting.prettier,
+        require("null-ls").builtins.formatting.rustfmt,
     },
 })
 

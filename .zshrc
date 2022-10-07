@@ -41,7 +41,3 @@ prompt pure
 # Created by `pipx` on 2022-03-25 18:32:10
 export PATH="$PATH:/home/vetse/.local/bin"
 source /usr/share/nvm/init-nvm.sh
-
-if [ -f /tmp/_cd_cache_ ]; then
-    cd $(command cat /tmp/_cd_cache_)
-fi
