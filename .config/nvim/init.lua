@@ -370,7 +370,7 @@ require("telescope").load_extension("fzf")
 -- vim.keymap.set("n", "<leader>ft", require("telescope.builtin").tags)
 vim.keymap.set("n", "<leader>b", require("telescope.builtin").buffers)
 vim.keymap.set("n", "<leader>r", require("telescope.builtin").live_grep)
-vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles)
+-- vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles)
 
 ----------------
 -- Treesitter --
@@ -503,7 +503,18 @@ lspconfig.jsonls.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.cmake.setup({ capabilities = capabilities })
 
 -- rust
-lspconfig.rust_analyzer.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            -- enable clippy on save
+            checkOnSave = {
+                command = "clippy",
+            },
+        },
+    },
+})
 
 -- python
 lspconfig.jedi_language_server.setup({
@@ -611,3 +622,29 @@ require("indent_blankline").setup({
     show_trailing_blankline_indent = false,
     char_highlight_list = { "IndentBlanklineIndent1", "IndentBlanklineIndent2" },
 })
+
+----------
+-- TEST --
+----------
+
+function _G.show_hex()
+    local current_word = vim.call("expand", "<cword>")
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, true, { "title", "content: " .. current_word })
+    vim.api.nvim_buf_add_highlight(buf, -1, "Title", 0, 0, -1)
+    vim.api.nvim_buf_set_option(buf, "buftype", "nofile")
+    vim.keymap.set({ "n", "v" }, "<leader>q", ":q<CR>", { silent = true, buffer = buf })
+    vim.keymap.set({ "n", "v" }, "<CR>", ":q<CR>", { silent = true, buffer = buf })
+    local opts = {
+        relative = "editor",
+        width = 25,
+        height = 10,
+        row = 10,
+        col = 10,
+        style = "minimal",
+        border = "rounded",
+    }
+    vim.api.nvim_open_win(buf, true, opts)
+end
+
+vim.keymap.set("n", "<leader>q", "<cmd>lua show_hex()<CR>", { silent = true })
