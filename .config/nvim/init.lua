@@ -1,201 +1,190 @@
 ----------------------------------------------------------------------------------------------------
---                                             Packer                                             --
+--                                             Plugin manager                                     --
 ----------------------------------------------------------------------------------------------------
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
-vim.api.nvim_create_autocmd(
-    "BufWritePost",
-    { command = "source <afile> | PackerCompile", group = packer_group, pattern = "init.lua" }
-)
-
-require("packer").startup(function(use)
-    use("wbthomason/packer.nvim") -- Package manager
-    use("vetsE/vim-bepo")
-    use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
-    use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" } })
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-    use("nvim-lualine/lualine.nvim") -- Fancier statusline
-    use("lukas-reineke/indent-blankline.nvim")
-    use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
-    use("nvim-treesitter/nvim-treesitter")
-    use("nvim-treesitter/nvim-treesitter-textobjects")
-    use("jose-elias-alvarez/null-ls.nvim")
-    use("williamboman/mason.nvim")
-    use("williamboman/mason-lspconfig.nvim")
-    use("neovim/nvim-lspconfig")
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-cmdline")
-    use("hrsh7th/nvim-cmp")
-    use("saadparwaiz1/cmp_luasnip")
-    use("L3MON4D3/LuaSnip")
-    use("shaunsingh/solarized.nvim")
-    use("folke/tokyonight.nvim")
-    use("EdenEast/nightfox.nvim")
-    use("kevinhwang91/rnvimr")
-    use("danymat/neogen")
-    use("machakann/vim-sandwich")
-    use("mechatroner/rainbow_csv")
-    use("rafamadriz/friendly-snippets")
-    use("ishan9299/nvim-solarized-lua")
-    use("lewis6991/spellsitter.nvim")
-    use("glepnir/lspsaga.nvim")
-    use("ray-x/lsp_signature.nvim")
-    use("mfussenegger/nvim-lint")
-    use("AndrewRadev/switch.vim")
-    use("wsdjeg/vim-fetch")
-    use({
+require("lazy").setup({
+    "wbthomason/packer.nvim",
+    "vetsE/bepo.nvim",
+    "numToStr/Comment.nvim",
+    { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    "nvim-lualine/lualine.nvim",
+    "lukas-reineke/indent-blankline.nvim",
+    { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "jose-elias-alvarez/null-ls.nvim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/nvim-cmp",
+    "saadparwaiz1/cmp_luasnip",
+    "L3MON4D3/LuaSnip",
+    "shaunsingh/solarized.nvim",
+    "folke/tokyonight.nvim",
+    "EdenEast/nightfox.nvim",
+    "kevinhwang91/rnvimr",
+    "danymat/neogen",
+    "mechatroner/rainbow_csv",
+    "rafamadriz/friendly-snippets",
+    "ishan9299/nvim-solarized-lua",
+    "lewis6991/spellsitter.nvim",
+    {
+        "glepnir/lspsaga.nvim",
+        event = "BufRead",
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+        },
+    },
+    -- "mfussenegger/nvim-lint",
+    "AndrewRadev/switch.vim",
+    "wsdjeg/vim-fetch",
+    {
         "iamcco/markdown-preview.nvim",
-        run = function()
+        build = function()
             vim.fn["mkdp#util#install"]()
         end,
-    })
-    use("lewis6991/impatient.nvim")
-end)
+    },
+    "ggandor/leap.nvim",
+    "edluffy/hologram.nvim",
+    "kylechui/nvim-surround",
+    { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
+    "HallerPatrick/py_lsp.nvim",
+    { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+    {
+        "jackMort/ChatGPT.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+    },
+}, {})
 
 ----------------------------------------------------------------------------------------------------
 --                                         General config                                         --
 ----------------------------------------------------------------------------------------------------
 
--- Only one common status bar
 vim.o.laststatus = 3
-
--- Allow to change buffer without saving
 vim.o.hidden = true
-
--- Set highlight on search
 vim.o.hlsearch = true
-
--- Make line numbers default
 vim.wo.number = true
-
--- No redraw while executing macros
 vim.o.lazyredraw = true
-
--- Show the matching bracket
 vim.o.showmatch = true
 vim.o.mat = 2
-
--- Copy to clipboard by default
 vim.o.clipboard = "unnamedplus"
-
--- Just wrap
 vim.o.lbr = true
-
--- Display annoying non-printable characters
 vim.o.list = true
 vim.opt.listchars = { nbsp = "¤", tab = "▸ " }
-
--- Enable mouse mode
 vim.o.mouse = "a"
-
--- Indenting stuff
-vim.o.tabstop = 4 -- Number of spaces that a <Tab> counts for.
-vim.o.shiftwidth = 4 -- Number of spaces that a shift insert.
-vim.o.expandtab = true -- Use the appropriate number of spaces to insert a <Tab>.
-vim.o.autoindent = true -- Copy the indentation of the last line.
-vim.o.smartindent = true -- Smarter indenting.
-vim.o.smarttab = true -- Smarter tabbing.
-
--- Enable break indent
 vim.o.breakindent = true
-
--- Save undo history
 vim.o.undodir = "/home/vetse/.cache/nvim/undodir"
 vim.opt.undofile = true
 vim.opt.history = 1000
-
--- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
--- Encoding
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
-
--- Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
-
--- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
-----------------------------------------------------------------------------------------------------
---                                            Mapping                                             --
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+--                                            Mapping                                          --
+-------------------------------------------------------------------------------------------------
 
--- Disable that fucking command history
+require("bepo").setup()
 vim.keymap.set({ "n", "v" }, "q:", "<Nop>", { silent = true })
-
--- Remap space as leader key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- Open/close ranger
 vim.keymap.set({ "n", "v" }, "<leader>o", ":RnvimrToggle<CR>", { silent = true })
-
--- More convenient C-o/C-i
 vim.keymap.set("n", "<leader>e", "<C-o>", { silent = true })
 vim.keymap.set("n", "<leader>i", "<C-i>", { silent = true })
-
--- Quick underline
 vim.keymap.set("n", "<leader>-", "yypVr-<CR>", { silent = true })
 vim.keymap.set("n", "<leader>=", "yypVr=<CR>", { silent = true })
 vim.keymap.set("n", "<leader>*", "yypVr*<CR>", { silent = true })
-
--- Buffer navigation
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>", { silent = true })
 vim.keymap.set("n", "<leader>t", ":bp<CR>", { silent = true })
 vim.keymap.set("n", "<leader>s", ":bn<CR>", { silent = true })
-
--- Signature help
--- vim.keymap.set("n", "<leader>h", require("lspsaga.signaturehelp").signature_help, { silent = true, noremap = true })
-
--- Clear search matches
 vim.keymap.set("n", "<leader><CR>", ":noh<CR>", { silent = true })
-
--- Format
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { silent = true })
 vim.keymap.set("v", "<leader>f", vim.lsp.buf.range_formatting, { silent = true })
-
--- Switch
 vim.keymap.set("n", "<leader>w", ":Switch<CR>", { silent = true })
+vim.keymap.set("n", "<leader>h", ":ChatGPT<CR>", { silent = true })
+
 -------------------------------------------------------------------------------------------------
 --                                      Plugin config                                          --
 -------------------------------------------------------------------------------------------------
 
------------
--- cache --
------------
+require("chatgpt").setup({})
 
-require("impatient")
+--------------
+-- surround --
+--------------
 
---------------------
--- Signature help --
---------------------
+require("nvim-surround").setup(require("bepo").nvim_surround())
 
-require("lsp_signature").setup({ floating_window = false, hint_prefix = "→ " })
+----------
+-- leap --
+----------
+
+require("leap")
+require("bepo").setup_leap()
 
 ----------
 -- SAGA --
 ----------
+
 local saga = require("lspsaga")
-saga.init_lsp_saga({
+saga.setup({
+    symbol_in_winbar = { enable = false },
     border_style = "rounded",
     saga_winblend = 10,
-    -- show_diagnostic_source = true,
-    code_action_lightbulb = {
-        enable = false,
+    show_diagnostic_source = true,
+    lightbulb = {
+        enable = true,
         sign = true,
         sign_priority = 100,
-        virtual_text = true,
+        virtual_text = false,
+    },
+    ui = {
+        code_action = "★",
+    },
+    diagnostic = {
+        on_insert = false,
+        on_insert_follow = false,
+        insert_winblend = 0,
+        show_code_action = true,
+        show_source = true,
+        jump_num_shortcut = true,
+        --1 is max
+        max_width = 0.7,
+        custom_fix = nil,
+        custom_msg = nil,
+        text_hl_follow = false,
+        border_follow = true,
+        keys = {
+            exec_action = "o",
+            quit = "q",
+            go_action = "g",
+        },
     },
 })
 
@@ -249,7 +238,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --------------
 -- Gitsigns --
 --------------
-
 require("gitsigns").setup({
     signs = {
         add = { text = "+" },
@@ -257,10 +245,48 @@ require("gitsigns").setup({
         delete = { text = "x" },
         topdelete = { text = "‾" },
         changedelete = { text = "~" },
+        untracked = { text = "" },
     },
+    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+    word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+    watch_gitdir = {
+        interval = 1000,
+        follow_files = true,
+    },
+    attach_to_untracked = true,
+    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+        delay = 1000,
+        ignore_whitespace = false,
+    },
+    current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
+    sign_priority = 6,
     update_debounce = 100,
-    max_file_length = 40000,
+    status_formatter = nil, -- Use default
+    max_file_length = 40000, -- Disable if file is longer than this (in lines)
+    preview_config = {
+        -- Options passed to nvim_open_win
+        border = "single",
+        style = "minimal",
+        relative = "cursor",
+        row = 0,
+        col = 1,
+    },
+    yadm = {
+        enable = false,
+    },
 })
+-- require("gitsigns").setup()
+-- {
+--     signs = {
+--       --     },
+--     update_debounce = 100,
+--     max_file_length = 40000,
+-- })
 
 --------------
 -- Spelling --
@@ -285,7 +311,7 @@ require("spellsitter").setup()
 ---------------------
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- nvim-cmp setup
 local has_words_before = function()
@@ -354,6 +380,11 @@ require("telescope").setup({
                 ["<C-u>"] = false,
                 ["<C-d>"] = false,
             },
+        },
+    },
+    pickers = {
+        colorscheme = {
+            enable_preview = true,
         },
     },
 })
@@ -449,7 +480,7 @@ local on_attach = function(_, bufnr)
     -- vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
     vim.keymap.set("n", "<leader>n", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>S", require("telescope.builtin").lsp_document_symbols, opts)
+    -- vim.keymap.set("n", "<leader>S", require("telescope.builtin").lsp_document_symbols, opts)
     vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.formatting, {})
 end
 -- Diagnostic setup
@@ -473,13 +504,13 @@ vim.keymap.set("n", "<S-F10>", function()
 end, { silent = true })
 
 -- Lua
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
     on_attach = on_attach,
     settings = {
         Lua = {
             runtime = { version = "LuaJIT" },
             diagnostics = { globals = { "vim" } },
-            workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+            workspace = { library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false },
             telemetry = { enable = false },
         },
     },
@@ -500,7 +531,16 @@ lspconfig.eslint.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.jsonls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- cmake
-lspconfig.cmake.setup({ capabilities = capabilities })
+lspconfig.cmake.setup({ on_attach = on_attach, capabilities = capabilities })
+
+lspconfig.tsserver.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    root_dir = function()
+        return vim.loop.cwd()
+    end,
+})
 
 -- rust
 lspconfig.rust_analyzer.setup({
@@ -517,32 +557,37 @@ lspconfig.rust_analyzer.setup({
 })
 
 -- python
-lspconfig.jedi_language_server.setup({
+-- lspconfig.jedi_language_server.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+-- })
+
+require("lspconfig").pyright.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
-lspconfig.pylsp.setup({
-    settings = {
-        pylsp = {
-            plugins = {
-                pylint = { enabled = true },
-                pyflakes = { enabled = false },
-                pycodestyle = { enabled = false },
-                mypy = { enabled = false },
-            },
-        },
-    },
-})
+
+-- lspconfig.pylsp.setup({
+--     settings = {
+--         pylsp = {
+--             plugins = {
+--                 pylint = { enabled = true },
+--                 pyflakes = { enabled = false },
+--                 pycodestyle = { enabled = false },
+--             },
+--         },
+--     },
+-- })
 lspconfig.ltex.setup({})
 
-require("lint").linters_by_ft = {
-    python = { "mypy" },
-}
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-    callback = function()
-        require("lint").try_lint()
-    end,
-})
+-- require("lint").linters_by_ft = {
+--     python = { "mypy" },
+-- }
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+--     callback = function()
+--         require("lint").try_lint()
+--     end,
+-- })
 
 ---------------------
 -- Auto-formatting --
@@ -561,6 +606,7 @@ require("null-ls").setup({
         require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.formatting.prettier,
         require("null-ls").builtins.formatting.rustfmt,
+        -- require("null-ls").builtins.diagnostics.mypy,
     },
 })
 
@@ -570,6 +616,8 @@ require("null-ls").setup({
 
 -- Set colorscheme
 vim.o.termguicolors = true
+vim.g.solarized_italics = 0
+vim.g.solarized_italic_comments = 0
 vim.cmd([[colorscheme solarized-high]])
 
 -- Set statusbar
@@ -605,6 +653,8 @@ vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSi
 vim.fn.sign_define("DiagnosticSignWarn", { text = "▲", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+
+-- require("py_lsp").setup({})
 
 ----------------------
 -- Indent blankline --

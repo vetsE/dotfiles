@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bepo.nvim"] = {
+    loaded = true,
+    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/bepo.nvim",
+    url = "https://github.com/vetsE/bepo.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -109,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["diffview.nvim"] = {
+    loaded = true,
+    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/diffview.nvim",
+    url = "https://github.com/sindrets/diffview.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -118,6 +128,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["glow.nvim"] = {
+    config = { "\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tglow\frequire\0" },
+    loaded = true,
+    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/glow.nvim",
+    url = "https://github.com/ellisonleao/glow.nvim"
+  },
+  ["hologram.nvim"] = {
+    loaded = true,
+    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/hologram.nvim",
+    url = "https://github.com/edluffy/hologram.nvim"
   },
   ["impatient.nvim"] = {
     loaded = true,
@@ -129,15 +150,10 @@ _G.packer_plugins = {
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
-  ["lsp_signature.nvim"] = {
+  ["leap.nvim"] = {
     loaded = true,
-    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
-    url = "https://github.com/ray-x/lsp_signature.nvim"
-  },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
+    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/leap.nvim",
+    url = "https://github.com/ggandor/leap.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -179,11 +195,6 @@ _G.packer_plugins = {
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-lint"] = {
-    loaded = true,
-    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/nvim-lint",
-    url = "https://github.com/mfussenegger/nvim-lint"
-  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -193,6 +204,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/nvim-solarized-lua",
     url = "https://github.com/ishan9299/nvim-solarized-lua"
+  },
+  ["nvim-surround"] = {
+    loaded = true,
+    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    url = "https://github.com/kylechui/nvim-surround"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -213,6 +229,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["py_lsp.nvim"] = {
+    loaded = true,
+    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/py_lsp.nvim",
+    url = "https://github.com/HallerPatrick/py_lsp.nvim"
   },
   rainbow_csv = {
     loaded = true,
@@ -254,24 +275,18 @@ _G.packer_plugins = {
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  ["vim-bepo"] = {
-    loaded = true,
-    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/vim-bepo",
-    url = "https://github.com/vetsE/vim-bepo"
-  },
   ["vim-fetch"] = {
     loaded = true,
     path = "/home/vetse/.local/share/nvim/site/pack/packer/start/vim-fetch",
     url = "https://github.com/wsdjeg/vim-fetch"
-  },
-  ["vim-sandwich"] = {
-    loaded = true,
-    path = "/home/vetse/.local/share/nvim/site/pack/packer/start/vim-sandwich",
-    url = "https://github.com/machakann/vim-sandwich"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: glow.nvim
+time([[Config for glow.nvim]], true)
+try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tglow\frequire\0", "config", "glow.nvim")
+time([[Config for glow.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

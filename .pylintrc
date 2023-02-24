@@ -2,6 +2,11 @@
 ignore = ,input
 persistent = yes
 load-plugins =
+init-hook=
+    try: import pylint_venv
+    except ImportError: pass
+    else: pylint_venv.inithook()
+
 
 [MESSAGES CONTROL]
 disable=too-many-arguments,too-many-instance-attributes,protected-access,invalid-name,too-few-public-methods

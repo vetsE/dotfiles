@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 # Reverse left-right mouse button
 current=$(xmodmap -pp | head -5 | tail -1 | awk '{print $2}');
