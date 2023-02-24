@@ -34,6 +34,8 @@ require("lazy").setup({
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/nvim-cmp",
+    "tjdevries/colorbuddy.nvim",
+    "svrana/neosolarized.nvim",
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
     "shaunsingh/solarized.nvim",
@@ -616,9 +618,11 @@ require("null-ls").setup({
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.g.solarized_italics = 0
-vim.g.solarized_italic_comments = 0
-vim.cmd([[colorscheme solarized-high]])
+require("neosolarized").setup({
+    comment_italics = false,
+    background_set = true,
+})
+-- vim.cmd([[colorscheme solarized-high]])
 
 -- Set statusbar
 require("lualine").setup({
