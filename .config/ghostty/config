@@ -1,0 +1,8 @@
+font-family = "FiraCode Nerd Font Mono SemBd"
+font-size = 14
+theme = "tokyonight"
+window-decoration = false
+window-padding-x = 5,5
+window-padding-y = 5,5
+shell-integration = zsh
+resize-overlay = always
